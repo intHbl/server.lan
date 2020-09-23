@@ -1,0 +1,106 @@
+
+
+## 安装依赖时 快一点. 
+http://mirrors.ustc.edu.cn/ubuntu-ports
+##
+
+
+#### 初始数据包
+/seafile.init_data.2.1.tar.gz
+######
+
+
+/seafile/
+total 20
+drwxr-xr-x 5 2000 2000 4096 Jul 12 01:28 ./
+drwxr-xr-x 1 root root 4096 Sep 21 03:21 ../
+lrwxrwxrwx 1 2000 2000   11 Jul 10 16:48 ccnet -> /data/ccnet
+lrwxrwxrwx 1 2000 2000   11 Jul 10 16:48 conf -> /data/conf/
+
+drwxr-xr-x 2 2000 2000 4096 Jul 10 16:38 logs/
+drwxr-xr-x 2 2000 2000 4096 Jul 10 17:31 pids/
+
+lrwxrwxrwx 1 2000 2000   19 Jul 10 16:48 seafile-data -> /data/seafile-data/
+
+
+drwxr-xr-x 7 2000 2000 4096 Sep 24  2019 seafile-server-7.0.5/
+lrwxrwxrwx 1 2000 2000   20 Jul 10 14:39 seafile-server-latest -> seafile-server-7.0.5/
+
+
+lrwxrwxrwx 1 2000 2000   17 Jul 10 16:47 seahub-data -> /data/seahub-data
+lrwxrwxrwx 1 2000 2000   15 Jul 10 16:47 seahub.db -> /data/seahub.db
+
+###### 安装包
+drwxr-xr-x 2 2000 2000 4096 Jul 10 16:38 logs/
+drwxr-xr-x 2 2000 2000 4096 Jul 10 17:31 pids/
+drwxr-xr-x 7 2000 2000 4096 Sep 24  2019 seafile-server-7.0.5/
+lrwxrwxrwx 1 2000 2000   20 Jul 10 14:39 seafile-server-latest -> seafile-server-7.0.5/
+##################
+
+
+
+###########################################################
+###########################################################
+###########################################################
+依赖
+
+
+apt-get install python3 python3-setuptools python3-pip python3-ldap  -y
+#fail2ban  mysql  nginx
+
+apt-get install python3-dev python3-setuptools libtiff5-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev tcl8.6-dev tk8.6-dev python3-tk libselinux1 sqlite3 -y
+pip3 install --timeout=3600 Pillow -i https://pypi.douban.com/simple/
+
+
+
+apt-get install libmemcached-dev -y
+pip3 install --timeout=3600 pylibmc -i https://pypi.douban.com/simple/
+
+
+
+# 第三个,psd-tools,这个是PS文件预览用的软件依赖包,装不上也不影响使用.然后把剩下的python3软件包装一下,需要 numpy?  sk-image?
+pip3 install --timeout=3600 captcha jinja2 sqlalchemy psd-tools django-pylibmc django-simple-captcha -i https://pypi.douban.com/simple/
+
+
+(
+apt install wget -y
+
+cd ~
+wget -c https://github.com/haiwen/seafile-rpi/releases/download/v7.1.4/seafile-server_7.1.4_pi-buster-stable.tar.gz
+
+tar -zxvf seafile-server_7.1.4_pi-buster-stable.tar.gz
+#mkdir installed
+#mv seafile-server_7.1.4_pi-buster-stable.tar.gz installed/
+#rm seafile-server_7.1.4_pi-buster-stable.tar.gz
+)
+
+
+
+(
+cd ~
+cd seafile-server-7.1.4
+(
+  cd seafile/lib
+  ln -s python3.7 python3.6
+)
+
+#./setup-seafile-mysql.sh
+./setup-seafile.sh
+)
+
+
+(
+cd seafile-server-latest
+./seafile.sh start
+./seahub.sh start
+)
+
+
+#port 8000  8082  
+#webdav  ??
+
+seafdav.conf中enable改为true。重启seafile服务即可。
+
+
+
+
