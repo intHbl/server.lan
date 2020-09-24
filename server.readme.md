@@ -46,7 +46,7 @@ disk
 	date
 	mount | grep "^/dev"
 	ls -alFh /mnt/hb.mountpoint
-	/home/hb/server.lan/services/start.sh
+	/home/hb/server.lan/services/start.sh &
 
 } > /tmp/server.lan_serviceStarting.log
 

@@ -1,173 +1,746 @@
 <html>
-<head>
+  <head>
+    <style>
+      li {
+        width: 100px;
+      }
 
+      div {
+        display: inline-block;
+        vertical-align: top;
+      }
 
-<style>
+      li {
+        border-top: 0px;
+        border: 0px;
+        margin: 0px;
+        margin-right: 3px;
+        padding: 0px;
+      }
 
+      button {
+        border-top: 0px;
+        border-left: 0px;
+        margin: 0px;
+      }
 
-li {
-width:100px;
-}
+      button:hover {
+        background-color: green;
+        color: blue;
 
-div{
-    display:inline-block;
-    vertical-align:top;
-}
+        border-color: red;
+      }
 
-li{
-    border-top:0px;
-    border:0px;
-    margin:0px;
-    margin-right:3px;
-    padding:0px;
-}
+      button.clicked {
+        border-color: red;
+        background-color: gray;
+        color: white;
+      }
+    </style>
+  </head>
+  <body style="background-color: gray">
+    <div style="background-color: white; height: 70%; overflow: auto">
+      <ul style="list-style-type: none; margin: 0px; padding: 0 0 2px 0">
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="http://server.lan/home/"
+          >
+            🥁home
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://inthbl.github.io/"
+          >
+            inthbl.github.io
+          </button>
+        </li>
+        <li>
+          <button class="cc" style="width: 100px" value="">. . . .</button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="http://server.lan:8000/"
+          >
+            seafile
+          </button>
+        </li>
+        <li>
+          <button class="cc" style="width: 100px" value="http://git.lan/">
+            git.lan
+          </button>
+        </li>
+        <li><br /></li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="http://server.lan:6800/ariaNg_ModifiedByHbl.html"
+          >
+            🎈aria2
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="http://server.lan:6801/"
+          >
+            qbittorrent
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="http://server.lan:10001/"
+          >
+            🥽videos
+          </button>
+        </li>
+        <li><br /></li>
+        <li>
+          <button class="cc" style="width: 100px" value="">- 备用 ::</button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="http://server.lan:6800/download"
+          >
+            aria2 download
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="http://server.lan:6802/download"
+          >
+            qbittorrent download
+          </button>
+        </li>
+        <li>
+          <button class="cc" style="width: 100px" value="">- 👆备用 -</button>
+        </li>
 
-button{
-    border-top:0px;
-    border-left:0px;
-    margin:0px;
-}
+        <li><br /></li>
+        <li>
+          <button class="cc" style="width: 100px" value="">其他存储🛢🛢:</button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.jianguoyun.com/"
+          >
+            坚果云
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.github.com/"
+          >
+            github
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.gitee.com/"
+          >
+            gitee
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://pan.baidu.com/"
+          >
+            百度网盘
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.lanzou.com/"
+          >
+            蓝奏
+          </button>
+        </li>
 
-button:hover {
-    background-color:green;
-    color:blue;
-    
-    border-color:red;
-}
+        <li><br /></li>
+        <li>
+          <button class="cc" style="width: 100px" value="">
+            - 👇for test ::
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button class="cc" style="width: 100px" value="http://server.lan/">
+            server.lan
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.baidu.com/"
+          >
+            baidu
+          </button>
+        </li>
+        <li>
+          <button class="cc" style="width: 100px" value="">
+            - 👆for test -
+          </button>
+        </li>
+        <li><br /></li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
+        <li>
+          <button
+            class="cc"
+            style="width: 100px"
+            value="https://www.w3school.com.cn/"
+          >
+            w3school
+          </button>
+        </li>
 
-button.clicked {
-    border-color:red; 
-    background-color:gray;
-    color:white;  
-}
+        <li><button class="cc" style="width: 100px" value="">---</button></li>
+      </ul>
+    </div>
 
-</style>
-</head>
-<body style="background-color:gray;">
+    <div style="width: 90%; height: 100%; padding: 0px">
+      <iframe
+        frameborder="0"
+        src="http://server.lan/home/"
+        style="width: 100%; height: 98%"
+        id="ifr"
+      ></iframe>
+    </div>
+  </body>
+  <script>
+    var p = document.createElement("p");
+    p.style =
+      "position:absolute;display:none;left:10%;background-color:#0a8aa0;color:white;"; //"relative";
 
-
-<div style="background-color:white;height:70%;overflow:auto;">
-<ul style="list-style-type:none;margin:0px;padding:0 0 2px 0">
-<li><button class="cc" style="width:100px" value="http://server.lan/home/"> 🥁home </button></li>
-<li><button class="cc" style="width:100px" value=""> . . . . </button></li>
-<li><button class="cc" style="width:100px" value="http://server.lan:8000/"> seafile </button></li>
-<li><button class="cc" style="width:100px" value="http://git.lan/">git.lan</button></li>
-<li><br/></li>
-<li><button class="cc" style="width:100px" value="http://server.lan:6800/ariaNg_ModifiedByHbl.html"> 🎈aria2 </button></li>
-<li><button class="cc" style="width:100px" value="http://server.lan:6801/"> qbittorrent </button></li>
-<li><button class="cc" style="width:100px" value="http://server.lan:10001/"> 🥽videos </button></li>
-<li><br/></li>
-<li><button class="cc" style="width:100px" value="">- 备用 :: </button></li>
-<li><button class="cc" style="width:100px" value="http://server.lan:6800/download"> aria2 download </button></li>
-<li><button class="cc" style="width:100px" value="http://server.lan:6802/download"> qbittorrent download </button></li>
-<li><button class="cc" style="width:100px" value="">- 👆备用 -</button></li>
-
-<li><br/></li>
-<li><button class="cc" style="width:100px" value=""> 其他存储🛢🛢: </button></li>
-<li><button class="cc" style="width:100px" value="https://www.jianguoyun.com/"> 坚果云 </button></li>
-<li><button class="cc" style="width:100px" value="https://www.github.com/"> github </button></li>
-<li><button class="cc" style="width:100px" value="https://www.gitee.com/"> gitee </button></li>
-<li><button class="cc" style="width:100px" value="https://pan.baidu.com/"> 百度网盘 </button></li>
-<li><button class="cc" style="width:100px" value="https://www.lanzou.com/"> 蓝奏 </button></li>
-
-<li><br/></li>
-<li><button class="cc" style="width:100px" value="">- 👇for test :: </button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="http://server.lan/">server.lan</button></li>
-<li><button class="cc" style="width:100px" value="https://www.baidu.com/">baidu</button></li>
-<li><button class="cc" style="width:100px" value="">- 👆for test -</button></li>
-<li><br/></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-<li><button class="cc" style="width:100px" value="https://www.w3school.com.cn/">w3school</button></li>
-
-
-<li><button class="cc" style="width:100px" value="" > --- </button></li>
-
-</ul>
-</div>
-
-
-
-<div style="width:90%;height:100%;padding:0px;">
-<iframe frameborder="0" src="http://server.lan/home/" style="width:100%; height:98%" id="ifr"></iframe>
-</div>
-
-
-</body>
-<script>
-for (i of document.getElementsByClassName("cc")){
-    if (i.value == ""){
-        continue
-    }
-    i.onclick=function(){
-        if(document.getElementById("ifr").src == this.value){
-            //return
-            console.log(document.getElementById("ifr").src)
-            return
+    for (i of document.getElementsByClassName("cc")) {
+      if (i.value == "") {
+        continue;
+      }
+      i.onclick = function () {
+        if (document.getElementById("ifr").src == this.value) {
+          //return
+          console.log(document.getElementById("ifr").src);
+          return;
         }
-        
-        for( c of document.getElementsByClassName("clicked")){
-            c.classList.remove("clicked")
-            //className-=" clicked"
+
+        for (c of document.getElementsByClassName("clicked")) {
+          c.classList.remove("clicked");
+          //className-=" clicked"
         }
         this.classList.add("clicked");
-        document.getElementById("ifr").src=this.value;
-        console.log(i)
-        console.log(this.className)
-       
-    }
+        document.getElementById("ifr").src = this.value;
+        console.log(i);
+        console.log(this.className);
+      };
 
-}
-</script>
+      i.onmouseover = function () {
+        p.innerText = this.value;
+        this.parentNode.insertBefore(p, this);
+        p.style.display = "inline";
+      };
+
+      i.onmouseleave = function () {
+        p.style.display = "none";
+      };
+    }
+  </script>
 </html>

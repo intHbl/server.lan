@@ -26,8 +26,8 @@ if [ ! -e "$dataPath" ];then
 fi
 chown 2000:2000 "$dataPath"
 
-if [ ! -e "$dataPath/ariaNg.html" ];then
-	cp port80/ariaNg.html "$dataPath/"
+if [ ! -e "$dataPath/ariaNg_ModifiedByHbl.html" ];then
+	cp port80/ariaNg_ModifiedByHbl.html "$dataPath/"
 fi
 
 

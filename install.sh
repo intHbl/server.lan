@@ -2,13 +2,25 @@
 
 apt install <TODO borgbackup>
 deb install <TODO docker.pkg.deb>
+# > https://download.docker.com/linux
+
 
 
 # config
 docker  json   docker_data --> ${dataX}/docker  #docker daemon config
+cat /etc/docker/daemon.json
+{
+    "data-root":"/mnt/hb.mountpoint/dataX/docker",
+    "log-driver": "none",
+    "log-opts": {
+        "max-size": "10m",
+        "max-file": "2"
+    }
+}
+
 adduser  runner #  2000:2000
 /etc/rc.local  <---  start.sh
-/etc/crontab  <---  backup  
+/etc/crontab  <---  backup , information 
 
 # logs
 /tmp/server.lan_<...>.log
