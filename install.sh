@@ -20,7 +20,7 @@ config_file="/etc/server.lan/config.ini"
     source  "${config_file}"
 
     # 1. add user
-    sudo useradd -u ${uid} -g ${gid} -m  "${username}"
+    sudo useradd -u ${uid_} -g ${gid_} -m  "${username_}"
 
     # 2. install docker 
     ## 2.1 download
@@ -49,7 +49,7 @@ EOF
     # 4.1 /etc/rc.local  或者作用 cron 代替
     /etc/rc.local  <---  start.sh
     # 4.2 /etc/crontab  <---  information 
-    add_to_cron " * * * * * ${username} TODO_command "
+    add_to_cron " * * * * * ${username_} TODO_command "
 
 
 )

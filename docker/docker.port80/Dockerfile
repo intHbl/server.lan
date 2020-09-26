@@ -17,7 +17,8 @@ WORKDIR ${GOPATH}/src/x/port80
 
 #Checkout version if set
 RUN  mkdir /out \
-    &&  GOOS=linux GOARCH=arm  go build -o /out/http_server  ./*.go
+    &&  go build -o /out/http_server  ./*.go
+    #TODO? GOOS=linux GOARCH=arm  go build -o /out/http_server  ./*.go
 
 VOLUME [ "/data" ]
 

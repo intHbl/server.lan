@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # entrypoint
-echo [starting] :: `date` :: aria2
+echo "[INFO]::starting:: `date` :: aria2"
 
 # conf file
 conf="/data/.aria2.d/aria2.conf"

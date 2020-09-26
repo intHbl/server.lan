@@ -47,7 +47,7 @@ function do_check__ {
 
 	if [ ! -e "${base_dir_log}" ];then
 		mkdir -p "${base_dir_log}"
-		chown ${uid}:${gid}  "${base_dir_log}"
+		chown ${uid_}:${gid_}  "${base_dir_log}"
 	fi
 
 	echo "[OK]::$0::`date`::check done"

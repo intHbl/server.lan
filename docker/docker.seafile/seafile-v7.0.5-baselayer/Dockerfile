@@ -1,5 +1,3 @@
-
-
 FROM ubuntu:xenial
 
 
@@ -9,7 +7,12 @@ LABEL  seafileVersion="7.0.5"
 
 
 
-ADD sources.list  /etc/apt/
+ARG uid_ 
+ARG gid_
+ARG username_
+
+
+ADD sources.armhf.list  /etc/apt/
 ADD seafile-server_7.0.5_stable_pi.tar.gz /seafile
 
 # python2.7
@@ -24,18 +27,9 @@ RUN ln -s  /seafile/seafile-server-7.0.5 /seafile/seafile-server-latest  \
   && pip install certifi idna  \
   && rm -r ~/.cache/pip \
   && apt clean \
-  && chown -R 2000:2000 /seafile 
+  && chown -R ${uid_}:${gid_} /seafile 
 
 
 
 
-
-
-# TODO
-## 安装seafile
-    # /seafile/目录下
-    # https://github.com/haiwen/seafile-rpi/releases/download/v7.0.5/seafile-server_7.0.5_stable_pi.tar.gz
-############
-###################
-##############
 

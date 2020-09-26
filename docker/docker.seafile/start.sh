@@ -18,6 +18,7 @@ function check_and_run(){
 
     #run
     "$1" "$2"
+
 }
 
 
@@ -31,23 +32,24 @@ fi
 
 
 (
-cd /seafile
-ln -s   /data/seahub.db       seahub.db     || true
+    cd /seafile
+    ln -s   /data/seahub.db       seahub.db     || true
 
-ln -s   /data/ccnet           ccnet         || true
-ln -s   /data/conf/           conf          || true
-ln -s   /data/seafile-data/   seafile-data  || true
-ln -s   /data/seahub-data     seahub-data   || true
+    ln -s   /data/ccnet           ccnet         || true
+    ln -s   /data/conf/           conf          || true
+    ln -s   /data/seafile-data/   seafile-data  || true
+    ln -s   /data/seahub-data     seahub-data   || true
 )
 
 
 
-i=0
 for ((i=0;i<5;i++));do
     if ! [ -e /data/seahub.db ] || ! [ -e /data/ccnet/ ] || ! [ -e /data/conf/ ] || ! [ -e /data/seafile-data/ ] || ! [ -e /data/seahub-data/ ]
     then
         # -k  keep old files| dont replace
-        tar -C "${seafile_data_dir}" -k -zxvf /seafile.init_data.*.tar.gz 2>/dev/null
+        # tar -C "${seafile_data_dir}" -k -zxvf /seafile.init_data.*.tar.gz 2>/dev/null
+        cp -r /initdata  "${seafile_data_dir}"
+        
     else
         break
     fi
@@ -65,12 +67,14 @@ for ((i=0;i<3;i++));do
 	if check_and_run "/seafile/seafile-server-latest/seafile.sh"  "$1";then
 		break
 	fi
+    sleep 1
 done
 
 for ((i=0;i<3;i++));do
 	if check_and_run "/seafile/seafile-server-latest/seahub.sh"   "$1";then
 		break
 	fi
+    sleep 1
 done
 } > /tmp/server.lan_seafile.startting.log
 

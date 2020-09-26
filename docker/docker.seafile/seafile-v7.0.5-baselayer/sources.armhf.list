@@ -1,0 +1,11 @@
+
+# /etc/apt/sources.list
+#   deb  [arch]<url>  <`lsb_release -m`>   main  restricted universe multiverse
+#   "" | -security  |  -updates  |  -proposed  |  -backports  
+
+# armhf
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ xenial main multiverse restricted universe
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-backports main multiverse restricted universe
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-proposed main multiverse restricted universe
+deb http://mirrors.ustc.edu.cn/ubuntu-ports/ xenial-security main multiverse restricted universe
+

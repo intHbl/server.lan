@@ -16,13 +16,20 @@ FROM alpine:3.12
 # LABEL  <k1>=<value> [<k2>=<v2>…]
 LABEL "maintainer"="hb-in@qq.com"
 
+
+ARG uid_ 
+ARG gid_
+ARG username_
+
 # aria2.conf  entrypoint.sh
 COPY   aria2.conf   entrypoint.sh   /etc/
+
+
 
 RUN  echo "http://mirrors.aliyun.com/alpine/v3.12/main" > /etc/apk/repositories  \
 && echo "http://mirrors.aliyun.com/alpine/v3.12/community" >> /etc/apk/repositories  \
 && chmod +x /etc/entrypoint.sh \
-&& chown  2000:2000   /etc/entrypoint.sh /etc/aria2.conf \
+&& chown  ${uid_}:${gid_}   /etc/entrypoint.sh /etc/aria2.conf \
 && apk update \
 && apk add --no-cache aria2  \
 && apk add --no-cache tzdata  \
@@ -39,7 +46,7 @@ COPY --from=build-env  /go/src/file.server/fsvr/file_server /file_server
 VOLUME ["/data"]
 EXPOSE 6800
 WORKDIR /
-USER 2000
+USER ${uid_}
 
 ENTRYPOINT ["/etc/entrypoint.sh"]
 # 6800/jsonrpc  --> 6801

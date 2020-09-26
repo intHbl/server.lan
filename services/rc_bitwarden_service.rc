@@ -3,7 +3,7 @@
 # run docker container
 ## default port=ROCKET_PORT=80
 docker run -d \
-    --user="${uid}:${gid}" \
+    --user="${uid_}:${gid_}" \
     --name="${container_name}" \
     -v "${dataPath}":/data/ \
     -e ROCKET_PORT=8080 \
