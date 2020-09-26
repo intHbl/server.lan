@@ -1,0 +1,12 @@
+
+
+# run docker container
+## default port=ROCKET_PORT=80
+docker run -d \
+    --user="${uid}:${gid}" \
+    --name="${container_name}" \
+    -v "${dataPath}":/data/ \
+    -e ROCKET_PORT=8080 \
+    -p "${bitwarden_port[0]}":8080 \
+    bitwardenrs/server
+

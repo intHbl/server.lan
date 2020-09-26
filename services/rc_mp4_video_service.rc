@@ -1,0 +1,12 @@
+
+
+# run docker container
+docker run -d  \
+	-v "${dataPath}":/data  \
+	-p  10001:8080  \
+	--name="${container_name}"  \
+	inthbl/mp4server-armhf
+
+
+
+

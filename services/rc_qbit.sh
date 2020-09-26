@@ -1,3 +1,6 @@
+
+
+
 mkdir -p qbit/{config,torrents,downloads} 
 sudo chmod 0777 qbit/{config,torrents,downloads} 
 

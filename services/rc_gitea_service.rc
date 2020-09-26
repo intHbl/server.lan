@@ -1,0 +1,12 @@
+
+
+# run docker container
+docker run -d  \
+	-v "${dataPath}":/data  \
+	-p  10022:22  \
+	-p  127.0.0.1:3000:3000  \
+	--name="${container_name}"  \
+	inthbl/gitea-armhf
+
+
+
