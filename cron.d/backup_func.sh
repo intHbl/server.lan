@@ -82,4 +82,14 @@ source  "${_configfile}"
 
 	unset BORG_PASSPHRASE
 
+	## rsync -r 
+	# TODO :: rsync
+	if [ -z "${remote_host_}" ];then
+		echo "[Warning] :: rsync exit:: `date` :: remote host did not set"
+		exit 0
+	fi
+	remote_dir="${username_}@${remote_host_}:/${base_dir_backup}/backup.${_name__}"
+	## rync -r  "${_repo_path}"   "${remote_dir}"
+	#TODO
+
 )  &> "${base_dir_log}/backup.${_name__}.$((`date "+%d"`%10)).log"

@@ -22,10 +22,13 @@ fi
 		exit 1
 	fi
 
+
 	for serviceName in ${needBackupList[*]}; do
 			echo "[INFO] backup for ${serviceName} "
 			bash "${backup_func}" "${serviceName}";
 	done
+	
+	
 
 )  &> "${base_dir_log}/backup._start.$((`date "+%d"`%10)).log"
 

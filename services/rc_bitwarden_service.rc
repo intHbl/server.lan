@@ -1,5 +1,9 @@
 
 
+if [ -z "${bitwarden_port}" ];then
+	bitwarden_port=(9000)
+fi
+
 # run docker container
 ## default port=ROCKET_PORT=80
 docker run -d \

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -15,7 +14,7 @@ func init() {
 	var err error
 	rootdir, err = filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("[Err]::get root dir err::", err)
 	}
 	fmt.Println("[INFO] work dir :: ", rootdir)
 

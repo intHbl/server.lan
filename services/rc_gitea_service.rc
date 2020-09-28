@@ -1,10 +1,14 @@
 
 
+if [ -z "${gitea_port}" ];then
+	gitea_port=(10022 127.0.0.1:3000)
+fi
+
 # run docker container
 docker run -d  \
 	-v "${dataPath}":/data  \
-	-p  10022:22  \
-	-p  127.0.0.1:3000:3000  \
+	-p  ${gitea_port[0]}:22  \
+	-p  ${gitea_port[1]}:3000  \
 	--name="${container_name}"  \
 	inthbl/gitea-armhf
 

@@ -15,36 +15,34 @@ config_file="/etc/server.lan/config.ini"
 source  "${config_file}"
 
 
-function do_check__ {
+function _do_check__ {
+
+	# pre run start.
+
 	echo "[INFO]::$0::`date`::start check disk mount, log dir"
 
-	sleep 10
-
-	/bin/mount -a
-
-	sleep 1
-
-	for ((ii=0;ii<33;ii++));do
-		if mountpoint ${base_dir_data}
-		then
+	## disk
+	for ((ii=0;ii<15;ii++));do
+		if mountpoint ${base_dir_data} ;then
 			sleep 1
 			break
 		else
-			sleep $[1+2*n]
+			sleep $[1+2*ii]
 			echo "[INFO] try mount auto :: 'mount -a' "
 			/bin/mount -a
 		fi
 	done
-
-	if [ `docker ps -a|wc -l` -le 2 ];then
-		/etc/init.d/docker restart
-	fi
-
 	if ! mountpoint ${base_dir_data} ;then
 		echo "[Err] ${base_dir_data} is not mountpoint"
 		exit 1
 	fi
 
+	# if [ `docker ps -a|wc -l` -le 2 ];then
+	# 	/etc/init.d/docker restart
+	# fi
+
+
+	## log
 	if [ ! -e "${base_dir_log}" ];then
 		mkdir -p "${base_dir_log}"
 		chown ${uid_}:${gid_}  "${base_dir_log}"
@@ -58,8 +56,11 @@ function do_check__ {
 
 
 (
+	# run 80 port for `home page` and `reverse proxy`.
+	./start_proxy_port80.sh &
 
-	do_check__
+	# check for services.
+	_do_check__
 
 	cd "$(dirname "$0")"
 	echo "[INFO] current dir :: `pwd`"
@@ -67,7 +68,7 @@ function do_check__ {
 
 	for i in sh_*_service.sh;
 	do
-		echo "[INFO]::`date`:: try to run service :: './$i &'";
+		echo "[INFO]::`date`:: try to run service :: './$i &'   ";
 
 		bash "./$i" &
 
@@ -78,8 +79,8 @@ function do_check__ {
 
 	for i in rc_*_service.rc;
 	do
-		echo "[INFO]::`date`:: try to run service :: './$i &'";
-		bash "./run_rc.sh" "$i"
+		echo "[INFO]::`date`:: try to run service :: './$i &'    ";
+		bash "./run_rc.sh" "$i"  & 
 		sleep 1
 		echo ""
 	done

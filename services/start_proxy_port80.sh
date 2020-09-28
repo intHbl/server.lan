@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # config
-server_name=$(basename "$0")
-server_name="${server_name:3:-11}"
+server_name="http_port80"
 config_file="/etc/server.lan/config.ini"
 source  "${config_file}"
 
@@ -19,8 +18,13 @@ source  "${config_file}"
 # )
 
 (
+    _software_dir="/usr/lib/server.lan/port80"
+    if [ ! -d "${_software_dir}" ];then
+        echo "[ERR]::${_software_dir}:: is not exists "
+        exit 1
+    fi
+    cd "${_software_dir}"
 
-    cd "$(dirname "$0")/port80"
     for ((ii=0;ii<3;ii++));do
         if [ ! -e "http_server" ];then
             container_name='port80_http_server'
@@ -33,6 +37,7 @@ source  "${config_file}"
         if [ -e "http_server" ];then
             break
         fi
+        sleep 1
     done
 
 
@@ -63,5 +68,5 @@ source  "${config_file}"
     echo 
     echo "[OK]::$0::done"
 
-) >> "${base_dir_log}/${server_name}.log"
+) >> "/tmp/server.lan_${server_name}.log"
 

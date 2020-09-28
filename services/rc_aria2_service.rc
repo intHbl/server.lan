@@ -2,7 +2,7 @@
 
 # ariaNg html file
 if [ ! -e "${dataPath}/ariaNg_ModifiedByHbl.html" ];then
-	cp port80/ariaNg_ModifiedByHbl.html "${dataPath}/"
+	cp /usr/lib/server.lan/port80/ariaNg_ModifiedByHbl.html "${dataPath}/"
 fi
 
 # chmod for ssfs's  read write
@@ -11,10 +11,15 @@ if [ -d "${dataPath}/download" ] ;then
 fi
 
 
+if [ -z "${aria2_port}" ];then
+	aria2_port=(6800)
+fi
+
+
 # run docker container
 docker run -d  \
 	-v "${dataPath}":/data  \
-	-p  6800:6800  \
+	-p  ${aria2_port[0]}:6800  \
 	--name="${container_name}"  \
 	inthbl/aria2-armhf
 

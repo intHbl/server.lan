@@ -1,0 +1,17 @@
+
+
+# client 
+browser
+    下载地址:
+
+
+#
+aria2:
+    server.lan:6800
+
+webdav -> joplin, zotera
+    server.lan:8080
+
+bitwarden
+    server.lan:???
+

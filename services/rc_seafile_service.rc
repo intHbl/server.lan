@@ -1,13 +1,17 @@
 
 
+if [ -z "${seafile_port}" ];then
+	seafile_port=(8000 8080 8082)
+fi
+
 # run docker container
 docker run -d \
 	-v  "${dataPath}":/data \
 	-e LANG=en_US.UTF-8 \
 	-e LC_ALL=en_US.UTF-8 \
-	-p 8000:8000 \
-	-p 8080:8080 \
-	-p 8082:8082 \
+	-p ${seafile_port[0]}:8000 \
+	-p ${seafile_port[1]}:8080 \
+	-p ${seafile_port[2]}:8082 \
 	--name "${container_name}" \
 	inthbl/seafile-v7.0.5-armhf
 
