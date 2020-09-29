@@ -68,6 +68,7 @@ _version="v`date +'%Y%m%d.%H'`"
             --build-arg uid_=${uid_} \
             --build-arg gid_=${gid_} \
             --build-arg username_=${username_} \
+            --build-arg GOPROXY=https://goproxy.cn \
             -t  ${_tagname}:${_version}  "${_dir_dockerfile}"
 
         sudo docker   tag      ${_tagname}:${_version}  ${_tagname}:latest
