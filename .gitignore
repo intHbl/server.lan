@@ -16,9 +16,9 @@ node_modules/
 ## seafile
 seafile-server_7.0.5_stable_pi.tar.gz
 ## docker
-containerd.io_*.deb  
-docker-ce-cli_*.deb  
-docker-ce_*.deb 
+containerd.io_*.deb  
+docker-ce-cli_*.deb  
+docker-ce_*.deb 
 
 
 ## build files

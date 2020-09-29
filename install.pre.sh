@@ -6,26 +6,14 @@
 
 
 
-
-
-
-config_file="/etc/server.lan/config.ini"
 ( 
-    cd  "`dirname $0`"
-
-    if [ ! -e "`dirname "${config_file}"`" ];then
-        sudo mkdir -p "`dirname "${config_file}"`"
-    fi
-    if [ ! -e "${config_file}" ];then
-        sudo cp  config.ini  "${config_file}"
-    fi
-        
-    source  "${config_file}"
+    cd  "`dirname $0`"      
+    source  "scripts/source_config.rc"
 
     # 1 install docker
-    function _check_and_install {
+    function _check_and_install_deb {
         if ls $1;then
-            dpkg -i "$1"
+            dpkg -i "$1"
             echo "[INFO]::install DONE::$1"
         fi
     }
@@ -33,15 +21,20 @@ config_file="/etc/server.lan/config.ini"
     if ! which docker ;then
         ## download  docker deb armhf
         # TODO
+        #
+        wget -c  https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/containerd.io_1.2.13-2_armhf.deb
+        wget -c  https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/docker-ce-cli_19.03.12~3-0~debian-buster_armhf.deb
+        wget -c https://download.docker.com/linux/debian/dists/buster/pool/stable/armhf/docker-ce_19.03.12~3-0~debian-buster_armhf.deb
+
         ##install
-        sudo _check_and_install  containerd.io_*.deb  
-        sudo _check_and_install  docker-ce-cli_*.deb  
-        sudo _check_and_install  docker-ce_*.deb 
+        _check_and_install_deb  containerd.io_*.deb  
+        _check_and_install_deb  docker-ce-cli_*.deb  
+        _check_and_install_deb  docker-ce_*.deb 
     fi
 
 
     # 2 build docker image  if not exists in `hub.docker.com`
-    echo '[WARN] build docker image  if not exists in <hub.docker.com>'
+    echo '[WARN] build docker image if not exists in <hub.docker.com>'
     echo "   ./build.sh"
 
     # 3 disk
@@ -117,7 +110,7 @@ config_file="/etc/server.lan/config.ini"
 
 ##############################
 #     # 3. docker config ; turn off  docker log.
-#     cat << EOF | sudo tee /etc/docker/daemon.json   > /dev/null
+#     cat << EOF | tee /etc/docker/daemon.json   > /dev/null
 # {
 #     "data-root":"${base_dir_data}/docker",
 #     "log-driver": "none",

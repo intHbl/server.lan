@@ -16,19 +16,9 @@ _check_and_apt_install rsync
 
 
 
-config_file="/etc/server.lan/config.ini"
 ( 
     cd  "`dirname $0`"
-
-    if [ ! -e `dirname "${config_file}"` ];then
-        mkdir -p `dirname "${config_file}"`
-    fi
-
-    if [ ! -e "${config_file}" ];then
-        cp config.ini  "${config_file}"
-    fi
-
-    source  "${config_file}"
+    source  "scripts/source_config.rc"
 
     # /etc/crontab  <--- backup 
     ## borgbackup # run by ${uid_} ${username_}

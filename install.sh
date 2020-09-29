@@ -26,20 +26,11 @@ fi
 # 2 /usr/lib/server.lan
 # 3 service start entry
 
-config_file="/etc/server.lan/config.ini"
 ( 
     cd  "`dirname $0`"
 
-    # etc  /etc/server.lan/...
-    if [ ! -e "`dirname "${config_file}"`" ];then
-        mkdir -p "`dirname "${config_file}"`"
-    fi
-        if [ ! -e "${config_file}" ];then
-            cp  config.ini  "${config_file}"
-        fi
-    fi
-
-    source  "${config_file}"
+    # etc  /etc/server.lan/...     
+    source  "scripts/source_config.rc"
 
     ##  add user
     useradd -u ${uid_} -g ${gid_} -m  "${username_}"

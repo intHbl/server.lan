@@ -2,7 +2,8 @@
 
 
 # readme
-#######################################
+#####################################
+## docker pull bitwardenrs/server
 ## docker image
 ##  https://hub.docker.com/r/bitwardenrs/server/dockerfile
 ## support os/arch

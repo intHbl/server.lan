@@ -1,0 +1,21 @@
+
+
+
+config_file="/etc/server.lan/config.ini"
+# etc  /etc/server.lan/...
+if [ ! -e "config.ini" ];then
+    echo "[Err]::no 'config.ini'::please set WorkDIR to 'server.lan'"
+    exit 1
+fi
+
+if [ ! -e ${config_file} ];then
+
+    if [ ! -e "`dirname "${config_file}"`" ];then
+        mkdir -p "`dirname "${config_file}"`"
+    fi
+
+    cp  config.ini  "${config_file}"
+
+fi
+
+source  "${config_file}"

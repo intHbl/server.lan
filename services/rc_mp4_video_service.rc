@@ -4,7 +4,6 @@ if [ -z "${mp4server_port}" ];then
 	mp4server_port=(10001)
 fi
 
-
 # run docker container
 docker run -d  \
 	-v "${dataPath}":/data  \
