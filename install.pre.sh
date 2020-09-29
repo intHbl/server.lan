@@ -60,7 +60,7 @@
     _mkdir_mnt_point  "${base_dir_download_mnt}"
     ### mnt.fstab
     function _check_and_echo {
-        if ! grep -F "$1" /etc/fstab;then
+        if ! grep -F "$1" /etc/fstab > /dev/null;then
             echo $1
             return 0
         else
