@@ -33,10 +33,6 @@ date > ~/docker.push.sh
             if [ ! -e "${_dockerfile}" ];then
                 continue
             fi
-            if [ -d "${_dockerfile}" ] && [ ! -e "${_dockerfile}/Dockerfile" ] ;then
-                echo "[Warn]::$0::no Dockerfile"
-                continue
-            fi
 
             echo "[INFO] build armhf :: ${_dockerfile}"
             bash ./scripts/build_armhf.sh ${_dockerfile} ${_build_flag} ${_is_push} &
