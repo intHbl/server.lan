@@ -70,7 +70,7 @@ source  "${config_file}"
 
 
 	# run 80 port for `home page` and `reverse proxy`.
-	./start_proxy_port80.sh &
+	bash ./start_proxy_port80.sh &
 
 	# check for services.
 	_do_check__
@@ -81,6 +81,9 @@ source  "${config_file}"
 
 	for i in sh_*_service.sh;
 	do
+		if [ ! -f "$i" ];then
+			continue
+		fi
 		echo "[INFO]::`date`:: try to run service :: './$i &'   ";
 
 		bash   "./$i"   &
@@ -93,6 +96,10 @@ source  "${config_file}"
 
 	for i in rc_*_service.rc;
 	do
+		if [ ! -f $i ];then
+			continue
+		fi
+
 		echo "[INFO]::`date`:: try to run service :: './$i &'    ";
 
 		bash   "./run_rc.sh"   "$i"  & 

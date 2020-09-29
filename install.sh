@@ -33,6 +33,7 @@ fi
     source  "scripts/source_config.rc"
 
     ##  add user
+    groupadd -g ${gid_} ${username_}
     useradd -u ${uid_} -g ${gid_} -m  "${username_}"
 
     # bin  /usr/lib/server.lan/....
@@ -40,7 +41,7 @@ fi
     _software_dir="/usr/lib/server.lan"
     if [ ! -e "${_software_dir}" ];then
         mkdir -p "${_software_dir}"
-    fi [ ! -d "${_software_dir}" ];then
+    elif [ ! -d "${_software_dir}" ];then
         echo "[ERR]::${_software_dir}:: is not a directory "
         exit 1
     fi
@@ -63,4 +64,6 @@ fi
     ## "* 4 * * * ${username_} ${_software_dir}/cron.d/borg.backup.sh"
     
 )
+
+echo "[OK]  install done"
 

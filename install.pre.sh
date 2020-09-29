@@ -45,11 +45,12 @@
             return
         fi
         _tmp="${1}"
-        if [ -e "${_tmp}" ] && [ ! -d "${_tmp}" ]; then
+
+        if [ ! -e "${_tmp}" ]; then
+            mkdir -p "${_tmp}"
+        elif  [ ! -d "${_tmp}" ]; then
             echo err
             return
-        else
-            mkdir -p "${_tmp}"
         fi
         chown ${uid_}:${gid_}  "${_tmp}"
     }
