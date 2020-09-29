@@ -84,7 +84,7 @@ _version="v`date +'%Y%m%d.%H'`"
 
 
 
-} | tee "${_log_file}"
+} 2>&1 | tee "${_log_file}"
 
 
 #
