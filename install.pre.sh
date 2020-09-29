@@ -66,12 +66,18 @@
         fi
     }
     function __fstab {
+        echo 
         echo "[INFO] please eidt <</etc/fstab>> later; mount -a"
+        echo
         ls -l /dev/disk/by-label/*
-
+        echo
+        echo "[WARN]::YOU CAN/MUST EDIT THE LABEL='xxx' "
         _check_fstab_and_echo "LABEL=disk_dataX     ${base_dir_data_mnt}      ext4  defaults,nofail  0  2"  
         _check_fstab_and_echo "LABEL=disk_backupX   ${base_dir_backup_mnt}    ext4  defaults,nofail  0  2" 
         _check_fstab_and_echo "LABEL=disk_downloadX ${base_dir_download_mnt}  ext4  defaults,nofail  0  2"
+
+        echo
+        echo
 
     }
 
@@ -98,10 +104,14 @@
 
     }
 
+    echo
+    echo "[INFO] ln -s "
 
     _soft_ln  "${base_dir_data_mnt}"     "${base_dir_data}"
     _soft_ln  "${base_dir_backup_mnt}"   "${base_dir_backup}"
     _soft_ln  "${base_dir_download_mnt}" "${base_dir_download}"
+    
+    echo
 
 
 )
