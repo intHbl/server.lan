@@ -59,27 +59,22 @@
     _mkdir_mnt_point  "${base_dir_backup_mnt}"
     _mkdir_mnt_point  "${base_dir_download_mnt}"
     ### mnt.fstab
-    function _check_and_echo {
-        if ! grep -F "$1" /etc/fstab > /dev/null;then
-            echo $1
-            return 0
-        else
-            return 1
+    function _check_fstab_and_echo {
+        if ! grep -F "$1" /etc/fstab &> /dev/null;then
+            echo $1 | tee -a /etc/fstab
         fi
     }
-    function _fstab {
-        echo "[INFO] please eidt <</etc/fstab>> later"
-        
-        {
-            if _check_and_echo "#LABEL=disk_dataX     ${base_dir_data_mnt}      ext4  defaults,nofail  0  2"  \
-                || _check_and_echo "#LABEL=disk_backupX   ${base_dir_backup_mnt}    ext4  defaults,nofail  0  2" \
-                || _check_and_echo "#LABEL=disk_downloadX ${base_dir_download_mnt}  ext4  defaults,nofail  0  2" ;then
-                    ls -l /dev/disk/by-label/*
-            fi
-        } >> /etc/fstab
+    function __fstab {
+        echo "[INFO] please eidt <</etc/fstab>> later; mount -a"
+        ls -l /dev/disk/by-label/*
+
+        _check_fstab_and_echo "#LABEL=disk_dataX     ${base_dir_data_mnt}      ext4  defaults,nofail  0  2"  
+        _check_fstab_and_echo "#LABEL=disk_backupX   ${base_dir_backup_mnt}    ext4  defaults,nofail  0  2" 
+        _check_fstab_and_echo "#LABEL=disk_downloadX ${base_dir_download_mnt}  ext4  defaults,nofail  0  2"
+
     }
 
-    _fstab
+    __fstab
 
 
     ## soft link
