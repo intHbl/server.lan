@@ -61,16 +61,19 @@ _version="v`date +'%Y%m%d.%H'`"
 
     if [ -d "${_dir_dockerfile}" ] && [ ! -e "${_dir_dockerfile}/Dockerfile" ];then
         echo "[Warning]::no Dockerfile in  ${_dir_dockerfile}"
-        exit 1
+        exit 0
     fi
     if ! sudo docker image ls "${_tagname}:${_version}" | grep -F "${_tagname}:${_version}";then
-        sudo docker build  \
+        
+        if ! sudo docker build  \
             --build-arg uid_=${uid_} \
             --build-arg gid_=${gid_} \
             --build-arg username_=${username_} \
             --build-arg GOPROXY=https://goproxy.cn \
-            -t  ${_tagname}:${_version}  "${_dir_dockerfile}"
-
+            -t  ${_tagname}:${_version}  "${_dir_dockerfile}" ;
+        then
+            exit 1
+        fi
         sudo docker   tag      ${_tagname}:${_version}  ${_tagname}:latest
     fi
 
@@ -86,8 +89,7 @@ _version="v`date +'%Y%m%d.%H'`"
     #
     ## post
     _build_hook "${_dir_dockerfile}/post_build.sh"
-
-
+    exit 0
 
 } 2>&1 | tee "${_log_file}"
 
