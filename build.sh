@@ -28,7 +28,7 @@ date > ~/docker.push.sh
 (
     cd `dirname  $0`
   
-    if uname -m | grep -F "arm" || [ "${_build_flag}" == "test" ];then
+    if docker version  | grep -i arch | grep -F "arm" || [ "${_build_flag}" == "test" ];then
         for _dockerfile in docker.* docker/docker.*  ;do
             if [ ! -e "${_dockerfile}" ];then
                 continue
@@ -39,7 +39,7 @@ date > ~/docker.push.sh
         done
     fi
 
-    if uname -m | grep -F "x86_64" ||  [ "${_build_flag}" == "test" ];then
+    if docker version | grep -i arch | grep -iE "x86_64|amd64" ||  [ "${_build_flag}" == "test" ];then
         for _dockerfile in docker.* docker/docker.*  ;do
             #TODO
             echo "x86_64"
