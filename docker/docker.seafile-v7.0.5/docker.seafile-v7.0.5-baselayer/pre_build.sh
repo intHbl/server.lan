@@ -6,7 +6,7 @@
     cd `dirname  $0`
 
 
-    if ! uname -m | grep -i "arm" ;then
+    if ! docker version | grep -i arch | grep -i "arm" ;then
         exit 0
     fi
 
