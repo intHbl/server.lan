@@ -17,7 +17,7 @@ _build_flag=$2
 _is_push=$3
 
 
-source ./sc
+
 
 
 function _build_hook {
@@ -28,8 +28,8 @@ function _build_hook {
     fi
 }
 
-
-_tag_name=$(basename "$1")
+source ./scripts/source_config.rc
+_tag_name=$(basename "${_dir_dockerfile}")
 _tag_name="${_tag_name:7}"
 _log_file="/tmp/${_tag_name}-armhf"
 _tagname="inthbl/${_tag_name}-armhf"
