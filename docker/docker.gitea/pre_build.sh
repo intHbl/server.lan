@@ -14,7 +14,7 @@
         for((i=0;i<20;i++));do
             echo "[INFO]::download::$i/20::${_file_name}"
             if wget -c https://github.com/go-gitea/gitea/releases/download/v1.12.2/gitea-src-1.12.2.tar.gz \
-            -O "${_file_name}" ;
+            -O "${_file_name}" ;then
 
                 mv  "${_file_name}"  "${_download_file_name}" 
                 break
