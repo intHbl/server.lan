@@ -52,7 +52,11 @@ _version="v`date +'%Y%m%d.%H'`"
 
 
     ## pre
-    _build_hook "${_dir_dockerfile}/pre_build.sh" 
+    if ! _build_hook "${_dir_dockerfile}/pre_build.sh" ;then
+        echo "[Err]::run ${_dir_dockerfile}/pre_build.sh  err"
+        exit 1
+    fi
+
 
 
     if [ -d "${_dir_dockerfile}" ] && [ ! -e "${_dir_dockerfile}/Dockerfile" ];then

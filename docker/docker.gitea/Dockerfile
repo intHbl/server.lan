@@ -16,7 +16,8 @@ ARG CGO_EXTRA_CFLAGS
 RUN apk --no-cache add build-base git nodejs npm
 
 #Setup repo
-COPY  ./gitea   ${GOPATH}/src/code.gitea.io/gitea
+ADD  gitea.v1.12.2.OK.tar.gz   ${GOPATH}/src/code.gitea.io/gitea
+COPY context.go   ${GOPATH}/src/code.gitea.io/gitea/modules/context/context.go
 WORKDIR ${GOPATH}/src/code.gitea.io/gitea
 
 #Checkout version if set

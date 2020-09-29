@@ -1,27 +1,33 @@
+
 #!/bin/bash
 
-#
+# https://github.com/go-gitea/gitea/releases
+## version  v1.12.2
+
 (
-    cd `dirname  $0`
+ 
+    cd "`dirname $0`"
+    _file_name="gitea-src-1.12.2.tar.gz"
+    _download_file_name="gitea.v1.12.2.OK.tar.gz"
 
+    if [ ! -e "${_download_file_name}" ];then
+        for((i=0;i<20;i++));do
+            echo "[INFO]::download::$i/20::${_file_name}"
+            if wget -c https://github.com/go-gitea/gitea/releases/download/v1.12.2/gitea-src-1.12.2.tar.gz \
+            -O "${_file_name}" ;
 
-    GiteaVer=v1.12.2
-    if [ -e gitea ];then
-        git -C gitea  checkout  ${GiteaVer}
-    else
-        if ! git clone https://github.com/go-gitea/gitea.git ; then
-            rm -r gitea/
-            echo "[Err]::$0::git clone gitea err"
-            exit 1
-        fi
-        git -C gitea  checkout  ${GiteaVer}
+                mv  "${_file_name}"  "${_download_file_name}" 
+                break
+            else
+                echo "[Warn]::download err::$i::retry -> $(($i+1))/20"
+            fi
+        done
     fi
 
-    git -C gitea  checkout  ${GiteaVer}
-
-
-    # X-Frame-Options SAMEORIGIN  --> "ALLOW-FROM url1,url2"
-    cp context.go gitea/modules/context/context.go
-
+    if [ ! -e "${_download_file_name}" ];then
+        exit 1
+    fi
+    
+    exit 0
 
 )
