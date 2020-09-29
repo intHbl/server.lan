@@ -56,7 +56,7 @@ for ((i=0;i<5;i++));do
 done
 if [ "$i" -eq 5 ];then
     echo "[ERR] data init error"
-    return 1
+    exit 1
 fi
 
 {
