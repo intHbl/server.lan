@@ -21,6 +21,11 @@ func initHomePage() {
 	homePageMux.HandleFunc("/home", homePageInner)
 	homePageMux.HandleFunc("/home/", homePageInner)
 	homePageMux.HandleFunc("/static", homeStatic)
+
+	homePageMux.HandleFunc("/ariaNg", ariang)
+	homePageMux.HandleFunc("/ariaNg/", ariang)
+	homePageMux.HandleFunc("/ariang", ariang)
+	homePageMux.HandleFunc("/ariang/", ariang)
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
@@ -41,4 +46,14 @@ func homePageInner(w http.ResponseWriter, r *http.Request) {
 
 func homeStatic(w http.ResponseWriter, r *http.Request) {
 	http.FileServer(http.Dir(rootdir))
+}
+
+// ariaNg_ModifiedByHbl.html
+// http://server.lan/ariaNg
+func ariang(w http.ResponseWriter, r *http.Request) {
+	page, err := ioutil.ReadFile(rootdir + "/ariaNg_ModifiedByHbl.html")
+	if err != nil {
+		fmt.Println("[E] read homepage_inner.html error")
+	}
+	_, _ = w.Write(page)
 }
