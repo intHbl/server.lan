@@ -48,7 +48,7 @@ for ((i=0;i<5;i++));do
     then
         # -k  keep old files| dont replace
         # tar -C "${seafile_data_dir}" -k -zxvf /seafile.init_data.*.tar.gz 2>/dev/null
-        cp -r /initdata  "${seafile_data_dir}"
+        cp -r /initdata/*  "${seafile_data_dir}"
         
     else
         break

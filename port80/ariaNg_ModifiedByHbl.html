@@ -577,6 +577,7 @@ _btn_close.style="color:red;background-color:rgba(50,100,150,1);display:block;po
 var _handler=null;
 _div.onclick=_btn_close.onclick=function(){
     _div.style.display="none";
+    _iframe.src="";
     _handler && clearTimeout(_handler) ;
     _handler=null;
 };
@@ -617,6 +618,7 @@ var _dl=document.getElementById("_x_downloads");
 _dl.onclick=function(){
     console.log("debug");
     _div.style.display="inline";
+    _iframe.src="http://server.lan:6800/download/";
     _handler=setInterval(_btn_close.onmouseover,1000);
 }
 
