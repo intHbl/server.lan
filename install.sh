@@ -29,15 +29,17 @@ fi
 ( 
     cd  "`dirname $0`"
 
-    # etc  /etc/server.lan/...     
+    # etc  /etc/server.lan/...
+    echo "[INFO] cp config file"     
     source  "scripts/source_config.rc"
 
     ##  add user
+    echo "[INFO] add group user" 
     groupadd -g ${gid_} ${username_}
     useradd -u ${uid_} -g ${gid_} -m  "${username_}"
 
     # bin  /usr/lib/server.lan/....
- 
+    echo "[INFO] cp excute file to   /usr/lib/server.lan" 
     _software_dir="/usr/lib/server.lan"
     if [ ! -e "${_software_dir}" ];then
         mkdir -p "${_software_dir}"
@@ -53,6 +55,14 @@ fi
     chmod u+x services/*.sh
     chown ${uid_}:${gid_} /usr/lib/server.lan
     chown -R ${uid_}:${gid_} /usr/lib/server.lan/
+ 
+    echo
+    echo "[OK] install is done"
+    echo 
+    echo "[INFO] entries :: ${_software_dir}/{services,cron.d}/....  "
+    echo "  [INFO] entrypoint -- >  ${_software_dir}/services/start.sh " 
+    echo "  [INFO] cron shell -- >  ${_software_dir}/cron.d/.....sh " 
+    
 
     # 4.1  服务的入口. TODO
     #  /etc/rc.local  或者作用 cron 代替
@@ -64,6 +74,9 @@ fi
     ## "* 4 * * * ${username_} ${_software_dir}/cron.d/borg.backup.sh"
     
 )
+
+## rm container if exists
+
 
 echo "[OK]  install done"
 

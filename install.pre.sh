@@ -89,9 +89,15 @@
         if [ -z "$2" ];then
             return
         fi
+        echo "[INFO] ln -s  ${1}  --->  ${2} "
 
         _tmp="`dirname "${2}"`"
-        if [ ! -e "${_tmp}" ];then
+        if [ -h "${2}" ];then
+            rm "${2}"
+        elif [ -e "${2}" ];then
+            echo err
+            return
+        elif [ ! -e "${_tmp}" ];then
             mkdir -p "${_tmp}"
         elif  [ ! -d "${_tmp}" ]; then
             echo err
@@ -99,7 +105,6 @@
         fi
         chown ${uid_}:${gid_}  "${_tmp}"
 
-        echo "[INFO] ln -s  ${1}  --->  ${2} "
         ln -s "${1}" "${2}"
 
     }
