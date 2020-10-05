@@ -1,8 +1,8 @@
 #!/bin/bash
 
-## 3/3 disk mount && ln -s 
-## 2/3 build docker image
-## 1/3 install docker
+## 2/2 disk mount && ln -s 
+## 1.*/2  build docker image if necessary
+## 1/2 install docker
 
 
 

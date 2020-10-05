@@ -39,7 +39,7 @@ fi
     ln -s   /data/conf/           conf          || true
     ln -s   /data/seafile-data/   seafile-data  || true
     ln -s   /data/seahub-data     seahub-data   || true
-    ln -s   /data/log             log           || true
+    ln -s   /data/logs            logs          || true
 )
 
 

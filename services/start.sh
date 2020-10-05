@@ -14,6 +14,11 @@
 # /usr/lib/server.lan/
 # /var/server.lan/{data,backup,download}
 
+if [ `id -u` -ge "1000" ];then
+	echo "[Err] user != root , use 'sudo ',or su to root "
+	exit 1
+fi
+
 
 (
 	# config

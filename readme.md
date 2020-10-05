@@ -49,8 +49,10 @@ not for x86
 
 > build , install
 ```shell
-install.pre.sh
 build.sh
+
+install.pre.sh
+
 install.sh
 ```
 
