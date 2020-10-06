@@ -40,33 +40,39 @@ not for x86
 > docker_container_name = `${name}_server`  
 > volume  in host  = `data.${name} `
 
+.   
+.   
+.   
 
-## config ,build,install 
-> config before install.
+## config ,build, install 
+> config 
+> build , (pre) , install , (post)
 ```shell
- vi config.ini
+1. config.ini
+2. build.sh  --> 
+3. install.pre.sh  - > install.sh  -> [ optional : install.post.*.sh ]
 ```
+> uninstall `uninstall.sh`  
+> reinstall `uninstall.sh` -> ` (pre) -> install.sh [ -> post]`
 
-> build , install
-```shell
-build.sh
-
-install.pre.sh
-
-install.sh
-```
+.   
+.   
+.   
 
 # service
 ## seafile , (video==> jellyfin)
-> `${base_dir_data}/{data.gitea,data.seafile,data.video,data.aria2,}`
+> `${base_dir_data}/data.{gitea,seafile,video,aria2}`
 ## download
-> `${base_dir_download}/{download.qbittorrent}`
+> `${base_dir_download}/download.{qbittorrent,}`
 
 ## backup
 >  borgbackup   -->    backup  
 >  rsync        -->    remote_backup
 
 
+.   
+.   
+.   
 
 # reverse proxy
 > port 80/443
