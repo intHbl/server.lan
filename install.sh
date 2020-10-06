@@ -47,10 +47,17 @@ fi
         echo "[ERR]::${_software_dir}:: is not a directory "
         exit 1
     fi
+
+    if [ -e  "${_software_dir}/port80/http_server" ];then
+        rm  "${_software_dir}/port80/http_server"
+    fi
+
     # cp xxxx /usr/lib/server.lan
     cp -r  cron.d/ "${_software_dir}"
     cp -r  port80/ "${_software_dir}"
     cp -r  services/ "${_software_dir}"
+
+
 
     chmod u+x services/*.sh
     chown ${uid_}:${gid_} /usr/lib/server.lan
@@ -74,9 +81,6 @@ fi
     ## "* 4 * * * ${username_} ${_software_dir}/cron.d/borg.backup.sh"
     
 )
-
-## rm container if exists
-
 
 echo "[OK]  install done"
 
