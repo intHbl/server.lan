@@ -5,7 +5,7 @@ if [ -z "${mp4server_port}" ];then
 fi
 
 # run docker container
-docker run -d  \
+docker run -d --restart=always  \
 	-v "${dataPath}":/data  \
 	-p  ${mp4server_port[0]}:8080  \
 	--name="${container_name}"  \

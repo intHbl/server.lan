@@ -5,7 +5,7 @@
 mkdir -p qbit/{config,torrents,downloads} 
 sudo chmod 0777 qbit/{config,torrents,downloads} 
 
-sudo docker run -d  \
+sudo docker run -d --restart=always  \
     -v  $(pwd)/qbit/config:/config \
     -v $(pwd)/qbit/torrents:/torrents \
     -v $(pwd)/qbit/downloads:/downloads \
