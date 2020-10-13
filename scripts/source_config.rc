@@ -4,7 +4,7 @@
 config_file="/etc/server.lan/config.ini"
 # etc  /etc/server.lan/...
 if [ ! -e "config.ini" ];then
-    echo "[Err]::no 'config.ini'::please set WorkDIR to 'server.lan'"
+    echo "[Err]::no <config.ini>::please copy <config.ini.template> to <config.ini>,and edit it"
     exit 1
 fi
 

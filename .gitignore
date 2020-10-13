@@ -24,5 +24,7 @@ docker-ce_*.deb
 ## build files
 
 port80/http_server
+*.crt
+*.key
 
 
