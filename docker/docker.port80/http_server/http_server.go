@@ -30,7 +30,7 @@ func main() {
 
 	http.HandleFunc("/", reverseProxy)
 
-	http.ListenAndServe("0.0.0.0:80", nil)
+	startServer()
 
 }
 

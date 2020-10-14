@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 
 ## note:
 ###  req  subj item's match policy ::  config = /etc/ssl/openssl.conf
@@ -24,13 +25,13 @@ fi
 
 (
     cd "`dirname "$0"`"
-    source ./scripts/source_config.rc
+    source ./scripts/source_config.rc || true
 )
 
 
-Country_="Country"
-State_="state"
-City_="city"
+Country_="XX"
+State_="State"
+City_="City"
 Orgnization_="OrgX"
 OrgUnit_="dev"
 
