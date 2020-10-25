@@ -28,24 +28,17 @@ date > ~/docker.push.sh
 (
     cd `dirname  $0`
     
-    if [ `bash ./scripts/platform.sh` == "armhf" ];then
-    #if docker version  | grep -i arch | grep -F "arm" || [ "${_build_flag}" == "test" ];then
-        for _dockerfile in docker.* docker/docker.*  ;do
-            if [ ! -e "${_dockerfile}" ];then
-                continue
-            fi
+    _platform="`bash ./scripts/platform.sh`"
 
-            echo "[INFO] build armhf :: ${_dockerfile}"
-            bash ./scripts/build_armhf.sh ${_dockerfile} ${_build_flag} ${_is_push} &
-        done
-    elif [ `bash ./scripts/platform.sh` == "x86_64" ];then
-        for _dockerfile in docker.* docker/docker.*  ;do
-            #TODO
-            echo "x86_64"
+    # ${_platform}: armhf , x86_64 | test , test= just echo information,but do not real build.
+    # if docker version  | grep -i arch | grep -F "arm" || [ "${_build_flag}" == "test" ];then
+    for _docker_path in docker.* docker/docker.*  ;do
+        if [ ! -d "${_docker_path}" ];then
             continue
-            bash ./scripts/build_x86_64.sh
-        done
-    fi
+        fi
 
+        echo "[INFO] build image for ${_platform} :: ${_docker_path}"
+        bash ./scripts/build_dockerimage.sh "${_docker_path}" "${_build_flag}" "${_is_push}" "${_platform}"  &
+        sleep 2
+    done
 )
-

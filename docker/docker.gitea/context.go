@@ -3,6 +3,8 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
+// modified :: ctx.Resp.Header().Set(`Content-Security-Policy`, `frame-ancestors 'self'  http://server.lan https://server.lan`)
+
 package context
 
 import (

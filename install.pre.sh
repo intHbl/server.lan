@@ -72,6 +72,8 @@
         ls -l /dev/disk/by-label/*
         echo
         echo "[WARN]::YOU CAN/MUST EDIT THE LABEL='xxx' "
+        # /etc/fstab 
+        #  LABEL=disk_dataX     ${base_dir_data_mnt}      ext4  defaults,nofail  0  2
         _check_fstab_and_echo "LABEL=disk_dataX     ${base_dir_data_mnt}      ext4  defaults,nofail  0  2"  
         _check_fstab_and_echo "LABEL=disk_backupX   ${base_dir_backup_mnt}    ext4  defaults,nofail  0  2" 
         _check_fstab_and_echo "LABEL=disk_downloadX ${base_dir_download_mnt}  ext4  defaults,nofail  0  2"

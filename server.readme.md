@@ -26,12 +26,6 @@ uid:gid = 2000:2000
 ```
 
 
-# server data directory
-## mount by label
-> /mnt/hb.mountponit
-/etc/fstab 
-/etc/fstab 
-/etc/fstab 
 disk 
 	data
 	download

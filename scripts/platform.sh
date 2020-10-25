@@ -2,9 +2,10 @@
 
 
 _platform="none"
-if uname -m | grep -iE "arm|aarch" > /dev/null;then
+if uname -m | grep -iE "arm|aarch" &> /dev/null;then
+    # arm  arm64  aarch64
     _platform="armhf"
-elif  uname -m | grep -iE "amd64|x86_64" > /dev/null;then
+elif  uname -m | grep -iE "amd64|x86_64" &> /dev/null;then
     _platform="x86_64"
 fi
 

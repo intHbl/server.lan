@@ -28,3 +28,5 @@ port80/http_server
 *.key
 
 
+*.__gen__
+/config.ini
