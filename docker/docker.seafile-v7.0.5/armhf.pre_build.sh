@@ -11,7 +11,7 @@
 
 
     if ! docker image ls | grep -F "inthbl/${_image_name}" ;then
-        if ! bash ./scripts/build_armhf.sh  "${_dir_dockerfile}" "${_build_flag}"  "${_is_push}" ;then
+        if ! bash ./scripts/build_dockerimage.sh  "${_dir_dockerfile}" "${_build_flag}"  "${_is_push}" "armhf" ;then
             exit 1
         fi
     fi
