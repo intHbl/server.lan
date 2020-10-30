@@ -7,7 +7,7 @@
 if [ ! -d "$1" ];then
     echo "[Err] ar1 need directory name, like 'docker.xxxx'"
     exit 1
-elif  ! `basename "$1"| grep -E "docker\."` ;then
+elif  ! basename "$1" | grep -E "^docker\..+" ;then
     echo "[Err] directory name is must like 'docker.xxxx', xxxx can be any char... "
     exit 1
 fi
@@ -75,8 +75,6 @@ _version="v`date +'%Y%m%d.%H'`"
             if [ ! -e "${dockerfile}" ];then
                 echo "[Warning]::no Dockerfile in $(pwd) for arch==${_platform}"
                 exit 0
-            else
-                
             fi
         fi
         if ! sudo docker image ls "${_tagname}:${_version}" | grep -F "${_tagname}:${_version}";then
