@@ -21,8 +21,8 @@ func enableHTTPS() bool {
 	//
 	if len(os.Args) >= 2 && (os.Args[1] == "https" || os.Args[1] == "HTTPS") {
 		//TODO :: not implemented!!!
-		//return true
-		fmt.Println("[Err] HTTPS is not implemented!! use http instead. ")
+		return true
+		//fmt.Println("[Err] HTTPS is not implemented!! use http instead. ")
 
 	}
 
