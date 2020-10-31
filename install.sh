@@ -84,6 +84,7 @@ fi
         _soft_link      "${HOME}/server.latest.key"   "${_software_dir}/port80/server.key"
         _soft_link      "${HOME}/server.latest.crt"   "${_software_dir}/port80/server.crt"
         echo "[INFO] HTTPS enabled"
+        cp  "/root/ca.crt"   "${_software_dir}/port80/static/root_ca.crt"
     fi
 
     echo "[INFO] stop and rm containers   < -f name=_server.lan > "
