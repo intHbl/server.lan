@@ -4,40 +4,37 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"path/filepath"
 )
 
-var rootdir string
+type redirectHTTPS struct{}
 
-func init() {
-
-	var err error
-	rootdir, err = filepath.Abs(filepath.Dir(os.Args[0]))
-	if err != nil {
-		fmt.Println("[Err]::get root dir err::", err)
+func (*redirectHTTPS) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	// http -> https
+	target := "https://server.lan" + r.URL.Path
+	if len(r.URL.RawQuery) > 0 {
+		target += "?" + r.URL.RawQuery
 	}
-	fmt.Println("[INFO] work dir :: ", rootdir)
-
-	initHomePage()
-	initGitServer()
-
+	http.Redirect(w, r, target, http.StatusTemporaryRedirect)
 }
 
-func main() {
+func enableHTTPS() bool {
+	//
+	if len(os.Args) >= 2 && (os.Args[1] == "https" || os.Args[1] == "HTTPS") {
+		fmt.Println("[Info] HTTPS is enable")
+		return true
+		//fmt.Println("[Err] HTTPS is not implemented!! use http instead. ")
+	}
 
-	//  server.lan  -->  home page :: 导航页
-	//  git.server.lan --> port 3000
-
-	http.HandleFunc("/", reverseProxy)
-
-	startServer()
-
+	return false
 }
 
-func reverseProxy(w http.ResponseWriter, r *http.Request) {
-	if r.Host == "server.lan" {
-		homePageMux.ServeHTTP(w, r) //
-	} else if r.Host == "git.server.lan" || r.Host == "git.lan" {
-		gitHandler.ServeHTTP(w, r)
+func startServer() {
+	fmt.Println("[INFO] if need https, please run with the arg1='HTTPS' < ./http_server HTTPS >. ")
+	fmt.Println("      and with those files :: './server.crt' './server.key' in the same directory")
+	if enableHTTPS() {
+		go http.ListenAndServe("0.0.0.0:80", &redirectHTTPS{})
+		http.ListenAndServeTLS("0.0.0.0:443", rootdir+"/server.crt", rootdir+"/server.key", nil)
+	} else {
+		http.ListenAndServe("0.0.0.0:80", nil)
 	}
 }

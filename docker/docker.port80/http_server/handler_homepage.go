@@ -26,6 +26,8 @@ func initHomePage() {
 	homePageMux.HandleFunc("/ariaNg/", ariang)
 	homePageMux.HandleFunc("/ariang", ariang)
 	homePageMux.HandleFunc("/ariang/", ariang)
+
+	proxyHandle["server.lan"] = homePageMux
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
