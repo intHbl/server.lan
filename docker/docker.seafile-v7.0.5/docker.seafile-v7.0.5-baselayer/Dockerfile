@@ -28,6 +28,7 @@ RUN ln -s  /seafile/seafile-server-7.0.5 /seafile/seafile-server-latest  \
   && rm -r ~/.cache/pip \
   && apt clean \
   && chown ${uid_}:${gid_} /seafile  \
+  && chmod 0777 /seafile  \
   && chown -R ${uid_}:${gid_} /seafile 
 
 
