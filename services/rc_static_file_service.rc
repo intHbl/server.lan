@@ -1,0 +1,16 @@
+
+
+if [ -z "${staticserver_port}" ];then
+	staticserver_port=(10001)
+fi
+
+# run docker container
+docker run -d --restart=always  \
+	-v "${dataPath}":/data  \
+	-p  ${staticserver_port[0]}:8080  \
+	--name="${container_name}"  \
+	inthbl/staticfile_server-armhf
+
+
+
+
