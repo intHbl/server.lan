@@ -27,6 +27,7 @@ RUN ln -s  /seafile/seafile-server-7.0.5 /seafile/seafile-server-latest  \
   && pip install certifi idna  \
   && rm -r ~/.cache/pip \
   && apt clean \
+  && chown ${uid_}:${gid_} /seafile  \
   && chown -R ${uid_}:${gid_} /seafile 
 
 

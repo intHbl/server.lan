@@ -51,7 +51,7 @@ _EMAIL_SECRET=""
 ####################################
 ####################################
 ## https  true|false
-#_ENABLE_HTTPS=false
+_ENABLE_HTTPS=true
 
 # backup
 needBackupList=(
