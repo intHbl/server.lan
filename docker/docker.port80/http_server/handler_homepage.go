@@ -7,13 +7,24 @@ import (
 )
 
 var (
-	homePageMux *http.ServeMux
+	homePageMux                               *http.ServeMux
+	homePageHTML, innerPageHTML, ariaPageHTML []byte
 )
 
 func initHomePage() {
-
-	//homepage = make([]byte, 200)
-	// read homepage
+	var err error
+	homePageHTML, err = ioutil.ReadFile(rootdir + "/homepage.html")
+	if err != nil {
+		fmt.Println("[E] read homepage error")
+	}
+	innerPageHTML, err = ioutil.ReadFile(rootdir + "/homepage_inner.html")
+	if err != nil {
+		fmt.Println("[E] read homepage_inner.html error")
+	}
+	ariaPageHTML, err = ioutil.ReadFile(rootdir + "/ariaNg_ModifiedByHbl.html")
+	if err != nil {
+		fmt.Println("[E] read homepage_inner.html error")
+	}
 
 	homePageMux = http.NewServeMux()
 
@@ -32,19 +43,11 @@ func initHomePage() {
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	homepage, err := ioutil.ReadFile(rootdir + "/homepage.html")
-	if err != nil {
-		fmt.Println("[E] read homepage error")
-	}
-	_, _ = w.Write(homepage)
+	_, _ = w.Write(homePageHTML)
 }
 
 func homePageInner(w http.ResponseWriter, r *http.Request) {
-	page, err := ioutil.ReadFile(rootdir + "/homepage_inner.html")
-	if err != nil {
-		fmt.Println("[E] read homepage_inner.html error")
-	}
-	_, _ = w.Write(page)
+	_, _ = w.Write(innerPageHTML)
 }
 
 func homeStatic(w http.ResponseWriter, r *http.Request) {
@@ -54,9 +57,5 @@ func homeStatic(w http.ResponseWriter, r *http.Request) {
 // ariaNg_ModifiedByHbl.html
 // http://server.lan/ariaNg
 func ariang(w http.ResponseWriter, r *http.Request) {
-	page, err := ioutil.ReadFile(rootdir + "/ariaNg_ModifiedByHbl.html")
-	if err != nil {
-		fmt.Println("[E] read homepage_inner.html error")
-	}
-	_, _ = w.Write(page)
+	_, _ = w.Write(ariaPageHTML)
 }
