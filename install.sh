@@ -73,7 +73,7 @@ fi
 
 # ssl  , https
     function _soft_link {
-        test -f "$2"  &&  rm "$2"
+        rm "$2" || true
         ln -s  "$1"  "$2"
     }
     
