@@ -36,7 +36,7 @@ function _build_hook {
 source ./scripts/source_config.rc
 _tag_name=$(basename "${_dir_dockerfile}")
 _tag_name="${_tag_name:7}"
-_log_file="/tmp/${_tag_name}-${_platform}"
+_log_file="/tmp/dockerbuild.${_tag_name}-${_platform}"
 
 _tagname="inthbl/${_tag_name}"
 _tagname_arch="inthbl/${_tag_name}-${_platform}"
@@ -115,6 +115,8 @@ _version="v`date +'%Y%m%d.%H'`"
     
 
 } 2>&1 | tee "${_log_file}"
+
+mv "${_log_file}" "${_log_file}.DONE.log"
 
 exit 0
 #

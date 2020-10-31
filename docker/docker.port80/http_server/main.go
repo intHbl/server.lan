@@ -29,20 +29,6 @@ func main() {
 	//  server.lan  -->  home page :: 导航页
 	//  git.server.lan --> port 3000
 
-	http.HandleFunc("/", reverseProxy)
-
 	startServer()
 
-}
-
-func reverseProxy(w http.ResponseWriter, r *http.Request) {
-	if v, ok := proxyHandle[r.Host]; ok {
-		//r.Host ==
-		///"server.lan"
-		///"git.server.lan" || r.Host == "git.lan"
-		///"down.server.lan"
-		///"v.server.lan"
-		///....
-		v.ServeHTTP(w, r)
-	}
 }

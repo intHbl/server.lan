@@ -31,8 +31,9 @@ func initHomePage() {
 	homePageMux.HandleFunc("/", homePage)
 	homePageMux.HandleFunc("/home", homePageInner)
 	homePageMux.HandleFunc("/home/", homePageInner)
-	homePageMux.HandleFunc("/static", homeStatic)
-	homePageMux.HandleFunc("/static/", homeStatic)
+	homeStaticHandler := http.FileServer(http.Dir(rootdir))
+	homePageMux.Handle("/static", homeStaticHandler)
+	homePageMux.Handle("/static/", homeStaticHandler)
 
 	homePageMux.HandleFunc("/ariaNg", ariang)
 	homePageMux.HandleFunc("/ariaNg/", ariang)
@@ -48,10 +49,6 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 
 func homePageInner(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write(innerPageHTML)
-}
-
-func homeStatic(w http.ResponseWriter, r *http.Request) {
-	http.FileServer(http.Dir(rootdir))
 }
 
 // ariaNg_ModifiedByHbl.html

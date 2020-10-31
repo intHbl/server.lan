@@ -29,6 +29,7 @@ func enableHTTPS() bool {
 }
 
 func startServer() {
+	http.HandleFunc("/", reverseProxy)
 	fmt.Println("[INFO] if need https, please run with the arg1='HTTPS' < ./http_server HTTPS >. ")
 	fmt.Println("      and with those files :: './server.crt' './server.key' in the same directory")
 	if enableHTTPS() {
@@ -36,5 +37,17 @@ func startServer() {
 		http.ListenAndServeTLS("0.0.0.0:443", rootdir+"/server.crt", rootdir+"/server.key", nil)
 	} else {
 		http.ListenAndServe("0.0.0.0:80", nil)
+	}
+}
+
+func reverseProxy(w http.ResponseWriter, r *http.Request) {
+	if v, ok := proxyHandle[r.Host]; ok {
+		//r.Host ==
+		///"server.lan"
+		///"git.server.lan" || r.Host == "git.lan"
+		///"down.server.lan"
+		///"v.server.lan"
+		///....
+		v.ServeHTTP(w, r)
 	}
 }
