@@ -81,8 +81,12 @@ fi
         bash ./scripts/ssl_https.sh
         _soft_link      "${HOME}/server.latest.key"   "${_software_dir}/port80/server.key"
         _soft_link      "${HOME}/server.latest.crt"   "${_software_dir}/port80/server.crt"
+        echo "[HTTPS] enabled"
     fi
 
+    echo "[INFO] stop and rm containers   < -f name=_server.lan > "
+    
+    docker rm $(docker stop $(docker ps -a  -f name=_server.lan -q) )
 
     echo
     echo "[OK] install is done"
