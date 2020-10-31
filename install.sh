@@ -26,6 +26,14 @@ fi
 # 2 /usr/lib/server.lan
 # 3 service start entry
 
+_config_file="/etc/server.lan/config.ini"
+read -p "  delete config file  ${_config_file} ?(y/N)"  _tmp
+if [ "y_" == "${_tmp}_" ] || [ "Y_" == "${_tmp}_" ];then
+    rm "${_config_file}"
+else
+    true
+fi
+
 ( 
     cd  "`dirname $0`"
 
@@ -63,22 +71,19 @@ fi
     chown ${uid_}:${gid_} /usr/lib/server.lan
     chown -R ${uid_}:${gid_} /usr/lib/server.lan/
 
+# ssl  , https
     function _soft_link {
         test -f "$2"  &&  rm "$2"
         ln -s  "$1"  "$2"
     }
     
     if  [ "x${_ENABLE_HTTPS}" == "xtrue" ] ;then
-        _soft_link      "~/server.latest.key"   "${_software_dir}/port80/server.key"
-        _soft_link      "~/server.latest.crt"   "${_software_dir}/port80/server.crt"
-    fi
-
-
-    # ssl  , https
-    if  [ "x${_ENABLE_HTTPS}" == "xtrue" ] ;then
         bash ./scripts/ssl_https.sh
+        _soft_link      "${HOME}/server.latest.key"   "${_software_dir}/port80/server.key"
+        _soft_link      "${HOME}/server.latest.crt"   "${_software_dir}/port80/server.crt"
     fi
- 
+
+
     echo
     echo "[OK] install is done"
     echo 
