@@ -32,7 +32,7 @@ fi
 Country_="XX"
 State_="State"
 City_="City"
-Orgnization_="OrgY"
+Orgnization_="OrgX"
 OrgUnit_="devG"
 
 if [ -z "${_EMAIL}" ];then
