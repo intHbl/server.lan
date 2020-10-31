@@ -32,8 +32,8 @@ fi
 Country_="XX"
 State_="State"
 City_="City"
-Orgnization_="OrgX"
-OrgUnit_="dev"
+Orgnization_="OrgY"
+OrgUnit_="devG"
 
 if [ -z "${_EMAIL}" ];then
     _EMAIL="TODO@server.lan"
@@ -111,10 +111,11 @@ _subj="/C=${Country_}/ST=${State_}/L=${City_}/O=${Orgnization_}/OU=${OrgUnit_}/C
             <(printf $configstring)) \
         -out server.${_NUM}.crt
 
+    echo  "[INFO] make soft link ::  .latest --> .${_NUM} "
     ln -s server.${_NUM}.key    server.latest.key
     ln -s server.${_NUM}.crt    server.latest.crt
 
-    echo [INFO] all is done
+    echo [INFO] ssl :: all is done
     exit 0
 
 
