@@ -13,6 +13,8 @@ func initReverseServer() {
 	proxyHandle["git.server.lan"] = proxyHandle["git.lan"]
 	///"down.server.lan"
 	proxyHandle["down.server.lan"] = NewHTTPProxy("http", "127.0.0.1:6800")
+	///"down.server.lan"
+	proxyHandle["qbit.server.lan"] = NewHTTPProxy("http", "127.0.0.1:6810")
 	///seafile ""
 	proxyHandle["seafile.server.lan"] = NewHTTPProxy("http", "127.0.0.1:8000")
 	proxyHandle["webdav.server.lan"] = NewHTTPProxy("http", "127.0.0.1:8080")

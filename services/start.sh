@@ -124,6 +124,6 @@ fi
 
 	docker ps -a 
 	
-) > /tmp/server.lan__start.log
+) | tee /tmp/server.lan__start.log
 
 

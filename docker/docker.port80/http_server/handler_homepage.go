@@ -21,6 +21,7 @@ func initHomePage() {
 	homePageMux.HandleFunc("/home", homePageInner)
 	homePageMux.HandleFunc("/home/", homePageInner)
 	homePageMux.HandleFunc("/static", homeStatic)
+	homePageMux.HandleFunc("/static/", homeStatic)
 
 	homePageMux.HandleFunc("/ariaNg", ariang)
 	homePageMux.HandleFunc("/ariaNg/", ariang)

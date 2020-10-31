@@ -30,17 +30,17 @@ base_dir_log=/tmp/server.lan.d
 
 # 
 ## 6800
-aria2_port=(6800)
+aria2_port=(127.0.0.1:6800)
 ## 8080
-bitwarden_port=(9000)
+bitwarden_port=(127.0.0.1:9000)
 ## 22 3000
 gitea_port=(10022 127.0.0.1:3000)
 ## 8080
-staticserver_port=(10001)  # for statics (video , image ....)
-## ????
-qbittorrent_port=
+staticserver_port=(127.0.0.1:10001)  # for statics (video , image ....)
+## ????web
+qbittorrent_port=(127.0.0.1:6810)
 ## 8000 8080 8082
-seafile_port=(8000 8080 8082)
+seafile_port=(127.0.0.1:8000 127.0.0.1:8080 127.0.0.1:8082)
 
 #
 ## mailer
