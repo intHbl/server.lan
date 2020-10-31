@@ -51,7 +51,9 @@ fi
     _software_dir="/usr/lib/server.lan"
     if [ ! -e "${_software_dir}" ];then
         mkdir -p "${_software_dir}"
-    elif [ ! -d "${_software_dir}" ];then
+    elif [ -d "${_software_dir}" ];then
+        rm -r "${_software_dir}/*"
+    else
         echo "[ERR]::${_software_dir}:: is not a directory "
         exit 1
     fi
@@ -81,11 +83,11 @@ fi
         bash ./scripts/ssl_https.sh
         _soft_link      "${HOME}/server.latest.key"   "${_software_dir}/port80/server.key"
         _soft_link      "${HOME}/server.latest.crt"   "${_software_dir}/port80/server.crt"
-        echo "[HTTPS] enabled"
+        echo "[INFO] HTTPS enabled"
     fi
 
     echo "[INFO] stop and rm containers   < -f name=_server.lan > "
-    
+
     docker rm $(docker stop $(docker ps -a  -f name=_server.lan -q) )
 
     echo
