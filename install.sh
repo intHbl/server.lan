@@ -76,7 +76,7 @@ fi
 
     # ssl  , https
     if  [ "x${_ENABLE_HTTPS}" == "xtrue" ] ;then
-        ./scripts/ssl_https.sh
+        bash ./scripts/ssl_https.sh
     fi
  
     echo
