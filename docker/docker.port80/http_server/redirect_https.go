@@ -34,7 +34,7 @@ func startServer() {
 	fmt.Println("      and with those files :: './server.crt' './server.key' in the same directory")
 	if enableHTTPS() {
 		go http.ListenAndServe("0.0.0.0:80", &redirectHTTPS{})
-		http.ListenAndServeTLS("0.0.0.0:443", "server.crt", "server.key", nil)
+		http.ListenAndServeTLS("0.0.0.0:443", rootdir+"/server.crt", rootdir+"/server.key", nil)
 	} else {
 		http.ListenAndServe("0.0.0.0:80", nil)
 	}
