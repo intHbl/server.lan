@@ -62,6 +62,22 @@ fi
     chmod u+x services/*.sh
     chown ${uid_}:${gid_} /usr/lib/server.lan
     chown -R ${uid_}:${gid_} /usr/lib/server.lan/
+
+    function _soft_link {
+        test -f "$2"  &&  rm "$2"
+        ln -s  "$1"  "$2"
+    }
+    
+    if  [ "x${_ENABLE_HTTPS}" == "xtrue" ] ;then
+        _soft_link      "~/server.latest.key"   "${_software_dir}/port80/server.key"
+        _soft_link      "~/server.latest.crt"   "${_software_dir}/port80/server.crt"
+    fi
+
+
+    # ssl  , https
+    if  [ "x${_ENABLE_HTTPS}" == "xtrue" ] ;then
+        ./scripts/ssl_https.sh
+    fi
  
     echo
     echo "[OK] install is done"

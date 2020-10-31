@@ -56,12 +56,21 @@ source  "${config_file}"
     fi
 
     echo 
+
+
     
-    start-stop-daemon --start --quiet --oknodo \
+    if  [ "x${_ENABLE_HTTPS}" == "xtrue" ] ;then
+
+        start-stop-daemon --start --quiet --oknodo \
+            --background --chuid 0:0  \
+                --make-pidfile  --pidfile \
+                "${pidfile}" --exec "`pwd`/http_server" -- HTTPS
+    else
+        start-stop-daemon --start --quiet --oknodo \
             --background --chuid 0:0  \
                 --make-pidfile  --pidfile \
                 "${pidfile}" --exec "`pwd`/http_server"
-
+    fi
     
     echo -e "\n\n[INFO] pid == `cat "${pidfile}"`"
     ps ax | grep -F http_server | grep -v "grep"

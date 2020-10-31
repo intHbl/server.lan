@@ -111,6 +111,9 @@ _subj="/C=${Country_}/ST=${State_}/L=${City_}/O=${Orgnization_}/OU=${OrgUnit_}/C
             <(printf $configstring)) \
         -out server.${_NUM}.crt
 
+    ln -s server.${_NUM}.key    server.latest.key
+    ln -s server.${_NUM}.crt    server.latest.crt
+
     echo [INFO] all is done
     exit 0
 
