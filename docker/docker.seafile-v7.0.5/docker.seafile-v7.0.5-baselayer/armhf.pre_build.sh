@@ -3,7 +3,7 @@
 (
 
     cd "`dirname "$0"`"
-    cp Dockerfile armhf.pre_build.sh
+    cp Dockerfile armhf.Dockerfile.__gen__
 
 )
 
