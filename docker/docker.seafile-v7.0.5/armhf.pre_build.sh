@@ -12,7 +12,7 @@
     _is_push="$2"
 
 
-    if ! docker image ls | grep -F "inthbl/${_image_name}" ;then
+    if ! docker image ls "inthbl/${_image_name}:latest" | grep -F "inthbl/${_image_name}" ;then
         # ./server.lan/docker/<-->
         if ! bash ../../scripts/build_dockerimage.sh  "${_dir_dockerfile}" "${_build_flag}"  "${_is_push}" "armhf" ;then
             exit 1
