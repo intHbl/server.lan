@@ -38,7 +38,7 @@ _tag_name=$(basename "${_dir_dockerfile}")
 _tag_name="${_tag_name:7}"
 _log_file="/tmp/dockerbuild.${_tag_name}-${_platform}"
 
-_tagname="inthbl/${_tag_name}"
+
 _tagname_arch="inthbl/${_tag_name}-${_platform}"
 # _version="v20200804"
 _version="v`date +'%Y%m%d.%H'`"
@@ -50,7 +50,6 @@ _version="v`date +'%Y%m%d.%H'`"
 
     if [ "x${_build_flag}" == "xtest" ];then
         echo "[test]::dockerfile.dir==${_dir_dockerfile}"
-        echo "[test]  ::tag==${_tagname}:${_version}"
         echo "[test]  ::tag(arch)==${_tagname_arch}:${_version}"
         exit 0
     elif [ "x${_build_flag}" != "xbuild" ];then
@@ -77,33 +76,26 @@ _version="v`date +'%Y%m%d.%H'`"
                 exit 0
             fi
         fi
-        if ! sudo docker image ls "${_tagname}:${_version}" | grep -F "${_tagname}:${_version}";then
+        if ! sudo docker image ls "${_tagname_arch}:${_version}" | grep -F "${_tagname_arch}:${_version}";then
             if ! sudo docker build  \
                 --build-arg uid_=${uid_} \
                 --build-arg gid_=${gid_} \
                 --build-arg username_=${username_} \
                 --build-arg GOPROXY=https://goproxy.cn \
-                -t  ${_tagname}:${_version} -f "${dockerfile}"  .  
+                -t  ${_tagname_arch}:${_version} -f "${dockerfile}"  .  
             then
                 exit 1
             fi
-            sudo docker   tag      ${_tagname}:${_version}  ${_tagname}:latest
+            sudo docker   tag      ${_tagname_arch}:${_version}  ${_tagname_arch}:latest
 
-            sudo docker   tag      ${_tagname}:${_version}  ${_tagname_arch}:${_version}
-            sudo docker   tag      ${_tagname}:${_version} ${_tagname_arch}:latest
         fi
 
         if [ "x${_is_push}" == "xpush" ];then
-            sudo docker push ${_tagname}:${_version}
-            sudo docker push ${_tagname}:latest
 
             sudo docker push ${_tagname_arch}:${_version}
             sudo docker push ${_tagname_arch}:latest
         else
             echo "
-            sudo docker push ${_tagname}:${_version}
-            sudo docker push ${_tagname}:latest
-
             sudo docker push ${_tagname_arch}:${_version}
             sudo docker push ${_tagname_arch}:latest
             " >> ~/docker.push.sh

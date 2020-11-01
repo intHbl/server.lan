@@ -21,7 +21,7 @@ docker run -d --restart=always \
 	-v "${dataPath}":/data  \
 	-p  ${aria2_port[0]}:6800  \
 	--name="${container_name}"  \
-	inthbl/aria2
+	inthbl/aria2-${arch_}
     #-armhf
 
 

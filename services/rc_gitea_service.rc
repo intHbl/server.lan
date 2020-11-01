@@ -10,7 +10,7 @@ docker run -d --restart=always \
 	-p  ${gitea_port[0]}:22  \
 	-p  ${gitea_port[1]}:3000  \
 	--name="${container_name}"  \
-	inthbl/gitea
+	inthbl/gitea-${arch_}
     #-armhf
 
 

@@ -13,7 +13,7 @@ docker run -d --restart=always \
 	-p ${seafile_port[1]}:8080 \
 	-p ${seafile_port[2]}:8082 \
 	--name "${container_name}" \
-	inthbl/seafile-v7.0.5
+	inthbl/seafile-v7.0.5-${arch_}
     #-armhf
 
 
