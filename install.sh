@@ -96,7 +96,7 @@ fi
     echo 
     echo "[INFO] entries :: ${_software_dir}/{services,cron.d}/....  "
     echo "  [INFO] entrypoint -- >  ${_software_dir}/services/start.sh " 
-    echo "  [INFO] cron shell -- >  ${_software_dir}/cron.d/.....sh " 
+    echo "  [INFO] cron shell -- >  ${_software_dir}/cron.d/{borg.backup,rsync.backup}.sh " 
     
 
     # 4.1  服务的入口. TODO

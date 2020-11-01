@@ -19,6 +19,8 @@ _check_and_apt_install rsync
 ( 
     cd  "`dirname $0`"
     source  "scripts/source_config.rc"
+    
+    echo '
 
     # /etc/crontab  <--- backup 
     ## borgbackup # run by ${uid_} ${username_}
@@ -26,5 +28,6 @@ _check_and_apt_install rsync
 
     ## rsync  --> remote
     #"TODO" add_to_cron    /usr/lib/server.lan/cron.d/rsync.backup.sh
+    '
 
 )
