@@ -1,4 +1,32 @@
 
+
+username_=runner
+
+#
+## mailer
+_EMAIL_HOST=""
+_EMAIL_PORT=""
+_EMAIL=""
+_EMAIL_SECRET=""
+####################################
+####################################
+
+
+# backup
+needBackupList=(
+	gitea
+	seafile
+	bitwarden
+)
+
+## remote rsync
+remote_host_=backup.lan
+#remote_dir=<${username_}@${remote_host_}:/${base_dir_backup}>
+
+
+
+################# don't modify the settings blow ################
+################################################################
 # user
 # hub.docker.com
 __dockerhub__=https://hub.docker.com/u/inthbl
@@ -6,13 +34,14 @@ __dockerhub__=https://hub.docker.com/u/inthbl
 
 # /etc/server.lan/config.ini
 
-username_=runner
+
 uid_=2000
 gid_=2000
 
 
 ## those must be mountpoints
 # /mnt/server.lan/{x,y,z}
+## /etc/fstab disk label == disk_downloadX  disk_yyyyyX
 # data :: 
 ## `xxx` is soft_link of `xxx_mnt` for service runtime. 
 ##  `base_dir_xxx_mnt` can be changed
@@ -28,6 +57,10 @@ base_dir_download=/var/server.lan/download
 
 base_dir_log=/tmp/server.lan.d
 
+
+###############
+## https  true|false
+_ENABLE_HTTPS=true
 # 
 ## 6800
 aria2_port=(127.0.0.1:6800)
@@ -35,32 +68,11 @@ aria2_port=(127.0.0.1:6800)
 bitwarden_port=(127.0.0.1:9000)
 ## 22 3000
 gitea_port=(10022 127.0.0.1:3000)
-## 8080
-staticserver_port=(127.0.0.1:10001)  # for statics (video , image ....)
+## 8080   # for statics (video , image ....)
+staticserver_port=(127.0.0.1:10001)  
 ## ????web
 qbittorrent_port=(127.0.0.1:6810)
 ## 8000 8080 8082
 seafile_port=(127.0.0.1:8000 127.0.0.1:8080 127.0.0.1:8082)
 
-#
-## mailer
-_EMAIL_HOST=""
-_EMAIL_PORT=""
-_EMAIL=""
-_EMAIL_SECRET=""
-####################################
-####################################
-## https  true|false
-_ENABLE_HTTPS=true
-
-# backup
-needBackupList=(
-	gitea
-	seafile
-	bitwarden
-)
-
-## remote rsync
-remote_host_=backup.lan
-#remote_dir=<${username_}@${remote_host_}:/${base_dir_backup}>
 
