@@ -3,7 +3,19 @@
 arm
 x86_64
 
+
+
+init data  
+
+
+```
+sudo tar -C data.seafile/  -zcvf seafile.init_data.3.0.tar.gz  .
+	v2.x   --> http
+	v3.0   --> https://seafile.server.lan https://file.server.lan
+```
+
 # cmd
+
 /opt/seafile
 
 docker build -t test/seafile -f  x86_64.Dockerfile .

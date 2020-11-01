@@ -1,0 +1,2 @@
+
+sudo tar -C data.seafile/  -zcvf seafile.init_data.M.N.tar.gz  .
