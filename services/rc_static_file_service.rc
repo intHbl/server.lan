@@ -9,7 +9,8 @@ docker run -d --restart=always  \
 	-v "${dataPath}":/data  \
 	-p  ${staticserver_port[0]}:8080  \
 	--name="${container_name}"  \
-	inthbl/staticfile_server-armhf
+	inthbl/staticfile_server
+    #-armhf
 
 
 
