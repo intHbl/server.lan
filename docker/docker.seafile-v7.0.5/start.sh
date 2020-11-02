@@ -53,18 +53,31 @@ if [ "$i" -eq 5 ];then
 fi
 
 (
-    cd "${seafile_data_dir}"
-     ln -s   /data/seahub.db       seahub.db     || true
+    function mk_ln_for_dir_ {
+            # ln -s   /data/ccnet/           ccnet         || true
+            if [ -d "$2" ];then
+                return
+            fi
+            echo "[INFO] make soft link :: ln -s $1 $2 "
 
-     ln -s   /data/ccnet           ccnet         || true
-     ln -s   /data/conf/           conf          || true
-     ln -s   /data/seafile-data/   seafile-data  || true
-     ln -s   /data/seahub-data     seahub-data   || true
-     ln -s   /data/logs            logs          || true
-     ln -s "${seafile_path}/seafile-server-7.0.5/"  "${seafile_path}/seafile-server-latest" || true
+            ln -s   "$1" "$2"   || true
 
-    ln -s "${seafile_path}/seafile-server-7.0.5/"  "${seafile_data_dir}/seafile-server-latest" || true
-) &> /dev/null
+    }
+
+    cd "${seafile_path}"
+    
+     ln -s   /data/seahub.db       seahub.db  || true
+
+     mk_ln_for_dir_   /data/ccnet/           ccnet          
+     mk_ln_for_dir_   /data/conf/            conf           
+     mk_ln_for_dir_   /data/seafile-data/    seafile-data  
+     mk_ln_for_dir_   /data/seahub-data/     seahub-data    
+     mk_ln_for_dir_   /data/logs/            logs           
+     mk_ln_for_dir_ "${seafile_path}/seafile-server-7.0.5/"  "${seafile_path}/seafile-server-latest" 
+
+    mk_ln_for_dir_ "${seafile_path}/seafile-server-7.0.5/"  "${seafile_data_dir}/seafile-server-latest" 
+
+) 2> /dev/null
 
 ##################
 
