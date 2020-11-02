@@ -24,6 +24,7 @@
             echo "[Err] app config not found, please run <'install.sh'> before this"
             return 1
         fi
+        echo "[INFO]:: gitea config :: ${_target}"    
         { 
             echo "
 [mailer]
@@ -47,6 +48,7 @@ PASSWD  = ${_EMAIL_SECRET}
             echo "[Err] app config not found, please run <'install.sh'> before this"
             return 1
         fi
+        echo "[INFO]:: seafile config :: ${_target}"        
         {
             echo "
 EMAIL_USE_SSL = True
@@ -67,13 +69,13 @@ SERVER_EMAIL = EMAIL_HOST_USER
             echo "[Err] arg is not set"
             exitflag=true
         fi
-        echo "[OK]"
+        echo "[OK] "
     }
 
     echo "[INFO] check mailer settings from  ${config_file}:: 
-        _EMAIL_HOST     : `isEmpty_and_exit "${_EMAIL_HOST}"`
-        _EMAIL_PORT     : `isEmpty_and_exit "${_EMAIL_PORT}"`
-        _EMAIL          : `isEmpty_and_exit "${_EMAIL}"`
+        _EMAIL_HOST     : `isEmpty_and_exit "${_EMAIL_HOST}" : ${_EMAIL_HOST}`
+        _EMAIL_PORT     : `isEmpty_and_exit "${_EMAIL_PORT}" : ${_EMAIL_PORT}`
+        _EMAIL          : `isEmpty_and_exit "${_EMAIL}" : "${_EMAIL}"`
         _EMAIL_SECRET   : `isEmpty_and_exit "${_EMAIL_SECRET}"`
     "
 
