@@ -75,14 +75,14 @@ echo "[INFO] arg1=$1 "
 
 
 for ((i=0;i<3;i++));do
-	if check_and_run "${seafile_data_dir}/seafile-server-latest/seafile.sh"  "$1";then
+	if check_and_run "${seafile_path}/seafile-server-latest/seafile.sh"  "$1";then
 		break
 	fi
     sleep 1
 done
 
 for ((i=0;i<3;i++));do
-	if check_and_run "${seafile_data_dir}/seafile-server-latest/seahub.sh"   "$1";then
+	if check_and_run "${seafile_path}/seafile-server-latest/seahub.sh"   "$1";then
 		break
 	fi
     sleep 1
