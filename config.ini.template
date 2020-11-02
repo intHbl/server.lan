@@ -5,6 +5,7 @@ username_=runner
 #
 ## mailer
 _EMAIL_HOST=""
+## smtp port : 465 | 587 , ( 587 maybe better)
 _EMAIL_PORT=""
 _EMAIL=""
 _EMAIL_SECRET=""
