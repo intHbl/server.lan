@@ -15,7 +15,7 @@
 
 
     function addTOBitwarden {
-        docker rm "bitwarden_server.lan" > /dev/null
+        docker rm "bitwarden_server.lan" &> /dev/null
     }
 
     function addTOGitea {
@@ -39,7 +39,7 @@
 
 
     function addTOSeafile {
-        ${_dataX}/data.seafile/conf/seahub_settings.py
+        _target=${_dataX}/data.seafile/conf/seahub_settings.py
         if [ ! -f "${_target}" ];then
             echo "[Err] app config not found, please run <'install.sh'> before this"
             return 1
@@ -89,7 +89,7 @@
     function start_container {
 
         echo "[Info] start container :: $1"
-        docker stop "$1"
+        docker stop "$1" 2> /dev/null
 
     }
 
