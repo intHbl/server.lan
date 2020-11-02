@@ -116,7 +116,8 @@ fi
     echo 
     echo "[INFO] entries :: ${_software_dir}/{services,cron.d}/....  "
     echo "  [INFO] entrypoint -- >  ${_software_dir}/services/start.sh " 
-    echo "  [INFO] cron shell -- >  bash ${_software_dir}/cron.d/backup.sh " 
+    echo "  [INFO] cron shell -- > 0  4 * * * ${username_} bash ${_software_dir}/cron.d/backup.sh " 
+    echo "  [INFO] cron shell -- > 55 3 * * * root   bash ${_software_dir}/cron.d/log.sh " 
     echo "  [INFO] other cron shells -- >  bash ${_software_dir}/cron.d/<xxx>.sh "
     echo
     echo "[INFO] DDNS ::  #ip#     server.lan *.server.lan git.lan *.git.lan "

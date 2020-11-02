@@ -35,7 +35,8 @@ source  "${_configfile}"
 		fi
 
 		if  ! mountpoint ${backup_base_path} ;then
-			echo "[Err] disk::backup is not mounted"
+			echo "[Err] `date`     ::disk::backup is not mounted" 
+			# send message to --> TODO
 			exit 1
 		fi
 
@@ -73,7 +74,10 @@ source  "${_configfile}"
 		docker stop "${_containername}"
 
 		tag=`date +%Y%m%d_%H%M%S`
-		borg  create  --stats -p  ${_repo_path}::${tag}  ${data_base_path}/data.${__SERVICE_NAME__}
+		if ! borg  create  --stats -p  ${_repo_path}::${tag}  ${data_base_path}/data.${__SERVICE_NAME__};then
+			echo "[Err]::`date`   :: borg backup err."
+			# send message to --> TODO
+		fi
 
 		docker start "${_containername}"
 
