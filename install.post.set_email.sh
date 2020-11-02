@@ -11,13 +11,10 @@ PATH="/bin:/sbin:${PATH}"
 
 
 function addTOBitwarden {
-    sudo docker rm `sudo docker stop  bitwarden_server.lan` 
+     docker rm ` docker stop  bitwarden_server.lan` 
 }
 
 function addTOGitea {
-    $1
-    $2
-    "${_EMAIL}"  "${_EMAIL_SECRET}"
     _target=${_dataX}/data.gitea/gitea/conf/app.ini
     if [ ! -f "${_target }" ];then
         echo "[Err] app config not found, please run <'install.sh'> before this"
@@ -38,9 +35,6 @@ PASSWD  = ${_EMAIL_SECRET}
 
 
 function addTOSeafile {
-    $1
-    $2
-    "${_EMAIL}"  "${_EMAIL_SECRET}"
     ${_dataX}/data.seafile/conf/seahub_settings.py
     if [ ! -f "${_target }" ];then
         echo "[Err] app config not found, please run <'install.sh'> before this"
@@ -86,9 +80,9 @@ addTOSeafile
 
 
 # then restart container
-sudo bash ./scripts/run_rc.sh rc_bitwarden_service.rc
+ bash ./scripts/run_rc.sh rc_bitwarden_service.rc
 
-sudo docker restart gitea_server.lan
-sudo docker restart seafile_server.lan
+ docker restart gitea_server.lan
+ docker restart seafile_server.lan
 
 
