@@ -77,5 +77,5 @@ source  "${config_file}"
     echo 
     echo "[OK]::$0::done"
 
-) >> "/tmp/server.lan_${server_name}.log"
+) >> "/tmp/server.lan.${server_name}.log"
 

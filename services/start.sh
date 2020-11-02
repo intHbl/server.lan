@@ -35,7 +35,7 @@ fi
 
 		# pre run start.
 
-		echo "[INFO]::$0::`date`::start check disk mount, log dir"
+		echo "[INFO]::`date`  ::$0::start check disk mount, log dir"
 
 		## disk
 		for ((ii=0;ii<16;ii++));do
@@ -70,11 +70,17 @@ fi
 			chown ${uid_}:${gid_}  "${base_dir_log}"
 		fi
 
-		echo "[OK]::$0::`date`::check done"
+		echo "[OK]::`date`  ::$0::check done"
 
 	}
 
 	
+	echo  "[INFO] ::`date`  :: mountpoint "
+	echo "---"
+	lsblk
+	echo "---"
+	df -h | grep ^'/dev'
+	echo "___"
 
 	# run 80 port for `home page` and `reverse proxy`.
 	bash ./start_proxy_port80.sh &
@@ -91,7 +97,7 @@ fi
 		if [ ! -f "$i" ];then
 			continue
 		fi
-		echo "[INFO]::`date`:: try to run service :: './$i &'   ";
+		echo "[INFO]::`date`  :: try to run service :: './$i &'   ";
 
 		bash   "./$i"   &
 
@@ -107,7 +113,7 @@ fi
 			continue
 		fi
 
-		echo "[INFO]::`date`:: try to run service :: './$i &'    ";
+		echo "[INFO]::`date`  :: try to run service :: './$i &'    ";
 
 		bash   "./run_rc.sh"   "$i"  & 
 		echo "[OK]::$i"
@@ -124,6 +130,6 @@ fi
 
 	docker ps -a 
 	
-) | tee /tmp/server.lan__start.log
+) | tee "${STARTLOGFILE}"
 
 

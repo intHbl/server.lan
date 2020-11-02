@@ -55,6 +55,7 @@ base_dir_backup=/var/server.lan/backup
 base_dir_download_mnt=/mnt/server.lan/downloadX
 base_dir_download=/var/server.lan/download
 
+STARTLOGFILE=/tmp/server.lan__start.log
 base_dir_log=/tmp/server.lan.d
 
 

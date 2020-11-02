@@ -18,7 +18,7 @@ fi
 	borg_backup_func="./backup.borg.sh"
     remote_backup_func="./backup.remote.sh"
 
-	if [ ! -f "/tmp/server.lan_serviceStarting.log" ];then
+	if [ ! -f "${STARTLOGFILE}" ];then
 		echo "[ERR] service not started"
 		exit 1
 	fi
