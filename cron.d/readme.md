@@ -9,12 +9,16 @@ entry: backup.sh
   }
 
 
-## list
-borg  list  <repo_path>
-borg  list  <repo_path>::<tag>
+## list, info
+> list tags 
+borg  list  <repo_path> 
+> list files  
+borg  list  <repo_path>::<tag>  
+> size  
+borg  info  <repo_path> 
 
 
-## recover
+## recovery
 ```shell
 check (mountpoint ${base_dir_data_mnt}) && (dir is not exists || is empty)
 then

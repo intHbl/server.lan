@@ -48,7 +48,11 @@
 
       export BORG_PASSPHRASE=mima123456
       if [ -z "$2" ];then
+        # >size
+        borg info "${repo_path_}"
+        # >list files
         borg list "${repo_path_}"
+        exit 0
       fi
 
       
