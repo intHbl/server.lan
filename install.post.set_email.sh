@@ -26,12 +26,12 @@
         fi
         { 
             echo "
-    [mailer]
-    ENABLED = true
-    HOST    = ${_EMAIL_HOST}:${_EMAIL_PORT}
-    FROM    = \"server.Bot\"<${_EMAIL}>
-    USER    = ${_EMAIL}
-    PASSWD  = ${_EMAIL_SECRET}
+[mailer]
+ENABLED = true
+HOST    = ${_EMAIL_HOST}:${_EMAIL_PORT}
+FROM    = \"server.Bot\"<${_EMAIL}>
+USER    = ${_EMAIL}
+PASSWD  = ${_EMAIL_SECRET}
     " 
         } >> "${_target}"
 
@@ -46,13 +46,13 @@
         fi
         {
             echo "
-    EMAIL_USE_SSL = True
-    EMAIL_HOST = '${_EMAIL_HOST}'
-    EMAIL_HOST_USER = '${_EMAIL}'
-    EMAIL_HOST_PASSWORD = '${_EMAIL_SECRET}'
-    EMAIL_PORT = '${_EMAIL_PORT}'
-    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-    SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_USE_SSL = True
+EMAIL_HOST = '${_EMAIL_HOST}'
+EMAIL_HOST_USER = '${_EMAIL}'
+EMAIL_HOST_PASSWORD = '${_EMAIL_SECRET}'
+EMAIL_PORT = '${_EMAIL_PORT}'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
     "
         } >> "${_target}"
 
