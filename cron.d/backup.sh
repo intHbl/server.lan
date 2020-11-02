@@ -26,6 +26,12 @@ fi
     # backup
     # needBackupList=(gitea	seafile	bitwarden)
 
+	## install borg_backup
+	if ! whick borg; then
+		apt update
+		apt install borgbackup -y
+	fi
+
 	for serviceName in ${needBackupList[*]}; do
             # 1#.backup to backup disk :: borg
 			echo "[INFO] backup for ${serviceName} "
