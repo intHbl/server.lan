@@ -32,17 +32,6 @@ fi
 
 
 
-(
-    cd "${seafile_path}"
-    ln -s   /data/seahub.db       seahub.db     || true
-
-    ln -s   /data/ccnet           ccnet         || true
-    ln -s   /data/conf/           conf          || true
-    ln -s   /data/seafile-data/   seafile-data  || true
-    ln -s   /data/seahub-data     seahub-data   || true
-    ln -s   /data/logs            logs          || true
-    ln -s   seafile-server-7.0.5 seafile-server-latest || true
-) &> /dev/null
 
 #################
 
@@ -63,6 +52,18 @@ if [ "$i" -eq 5 ];then
     exit 1
 fi
 
+(
+    cd "${seafile_data_dir}"
+    # ln -s   /data/seahub.db       seahub.db     || true
+
+    # ln -s   /data/ccnet           ccnet         || true
+    # ln -s   /data/conf/           conf          || true
+    # ln -s   /data/seafile-data/   seafile-data  || true
+    # ln -s   /data/seahub-data     seahub-data   || true
+    # ln -s   /data/logs            logs          || true
+    ln -s "${seafile_path}/seafile-server-7.0.5/"  "${seafile_data_dir}/seafile-server-latest" || true
+) &> /dev/null
+
 ##################
 
 echo "[INFO] `date` :: run seafile seahub"
@@ -72,14 +73,14 @@ echo "[INFO] arg1=$1 "
 
 
 for ((i=0;i<3;i++));do
-	if check_and_run "${seafile_path}/seafile-server-latest/seafile.sh"  "$1";then
+	if check_and_run "${seafile_data_dir}/seafile-server-latest/seafile.sh"  "$1";then
 		break
 	fi
     sleep 1
 done
 
 for ((i=0;i<3;i++));do
-	if check_and_run "${seafile_path}/seafile-server-latest/seahub.sh"   "$1";then
+	if check_and_run "${seafile_data_dir}/seafile-server-latest/seahub.sh"   "$1";then
 		break
 	fi
     sleep 1
