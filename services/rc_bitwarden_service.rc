@@ -7,7 +7,7 @@ fi
 
 # EMAIL_ARGS_FOR_EMAIL="-e SMTP_HOST=<smtp.domain.tld> -e SMTP_FROM=<bitwarden@domain.tld> -e SMTP_PORT=587 -e SMTP_SSL=true -e SMTP_USERNAME=<username> -e SMTP_PASSWORD=<password> "
 EMAIL_ARGS_FOR_EMAIL=" "
-if [ -z "${_EMAIL_SECRET}" ];then
+if [ ! -z "${_EMAIL_SECRET}" ];then
     EMAIL_ARGS_FOR_EMAIL=" -e SMTP_HOST=${_EMAIL_HOST} -e SMTP_FROM=${_EMAIL} -e SMTP_PORT=${_EMAIL_PORT} -e SMTP_SSL=true -e SMTP_USERNAME=${_EMAIL} -e SMTP_PASSWORD=${_EMAIL_SECRET} "
 fi
 
