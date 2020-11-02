@@ -89,7 +89,7 @@
     function start_container {
 
         echo "[Info] start container :: $1"
-        docker stop "$1" 2> /dev/null
+        docker start "$1" 2> /dev/null
 
     }
 
