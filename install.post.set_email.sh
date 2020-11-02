@@ -16,7 +16,7 @@ function addTOBitwarden {
 
 function addTOGitea {
     _target=${_dataX}/data.gitea/gitea/conf/app.ini
-    if [ ! -f "${_target }" ];then
+    if [ ! -f "${_target}" ];then
         echo "[Err] app config not found, please run <'install.sh'> before this"
         return 1
     fi
@@ -29,14 +29,14 @@ FROM    = \"server.Bot\"<${_EMAIL}>
 USER    = ${_EMAIL}
 PASSWD  = ${_EMAIL_SECRET}
 " 
-    } >> "${_target }"
+    } >> "${_target}"
 
 }
 
 
 function addTOSeafile {
     ${_dataX}/data.seafile/conf/seahub_settings.py
-    if [ ! -f "${_target }" ];then
+    if [ ! -f "${_target}" ];then
         echo "[Err] app config not found, please run <'install.sh'> before this"
         return 1
     fi
