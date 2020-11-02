@@ -19,16 +19,18 @@ if [ `id -u` -ge "1000" ];then
 	exit 1
 fi
 
+# config
+config_file="/etc/server.lan/config.ini"
+if [ ! -e "${config_file}" ];then
+	echo "[Err]::config_file not exists::${config_file}"
+	exit 1
+fi
+source  "${config_file}"
 
-(
-	# config
-	config_file="/etc/server.lan/config.ini"
-	if [ ! -e "${config_file}" ];then
-		echo "[Err]::config_file not exists::${config_file}"
-		exit 1
-	fi
+{
+	
 
-	source  "${config_file}"
+	
 	cd "$(dirname "$0")"
 
 	function _do_check__ {
@@ -130,6 +132,6 @@ fi
 
 	docker ps -a 
 	
-) | tee "${STARTLOGFILE}"
+ } | tee "${STARTLOGFILE}"
 
 
