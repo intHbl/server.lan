@@ -85,4 +85,4 @@ source  "${_configfile}"
 
 	unset BORG_PASSPHRASE
 
-)  &> "${base_dir_log}/backup.${__SERVICE_NAME__}.borg.$((`date "+%d"`%10)).log"
+)  2>&1 | tee "${base_dir_log}/backup.${__SERVICE_NAME__}.borg.$((`date "+%d"`%10)).log"

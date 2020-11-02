@@ -36,5 +36,5 @@ fi
 	
 	
 
-)  &> "${base_dir_log}/backup._start.$((`date "+%d"`%10)).log"
+)  2>&1 | tee "${base_dir_log}/backup._start.$((`date "+%d"`%10)).log"
 

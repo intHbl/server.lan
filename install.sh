@@ -45,6 +45,7 @@ fi
     echo "[INFO] add group user" 
     groupadd -g ${gid_} ${username_}
     useradd -u ${uid_} -g ${gid_} -m  "${username_}"
+    usermod  -G docker ${username_}
 
 # bin  /usr/lib/server.lan/....
     echo "[INFO] cp excute file to   /usr/lib/server.lan" 
