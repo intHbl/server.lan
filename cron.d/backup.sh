@@ -15,17 +15,23 @@ fi
 (
 	cd `dirname $0`
 
-	backup_func="./backup_func.sh"
+	borg_backup_func="./backup.borg.sh"
+    remote_backup_func="./backup.remote.sh"
 
 	if [ ! -f "/tmp/server.lan_serviceStarting.log" ];then
 		echo "[ERR] service not started"
 		exit 1
 	fi
 
+    # backup
+    # needBackupList=(gitea	seafile	bitwarden)
 
 	for serviceName in ${needBackupList[*]}; do
+            # 1#.backup to backup disk :: borg
 			echo "[INFO] backup for ${serviceName} "
-			bash "${backup_func}" "${serviceName}";
+			bash "${borg_backup_func}" "${serviceName}";
+            # 2#.backup to remote :: rsync ....  &
+            bash "${remote_backup_func}" "${serviceName}" & ;
 	done
 	
 	

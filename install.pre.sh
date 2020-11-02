@@ -10,7 +10,7 @@
     cd  "`dirname $0`"      
     source  "scripts/source_config.rc"
 
-    # 1 install docker
+    # 1# install docker
     function _check_and_install_deb {
         if ls $1;then
             dpkg -i "$1"
@@ -31,11 +31,11 @@
     fi
 
 
-    # 2 build docker image  if not exists in `hub.docker.com`
+    # 2# build docker image  if not exists in `hub.docker.com`
     echo '[WARN] build docker image if not exists in <hub.docker.com>'
     echo "   ./build.sh"
 
-    # 3 disk
+    # 3# disk , mount , ln -s ....
 
     ## mount
     function _mkdir_mnt_point {

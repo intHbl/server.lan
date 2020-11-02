@@ -1,24 +1,27 @@
 #!/bin/bash
 
 
+# backup
+# needBackupList=(gitea	seafile	bitwarden)
 # setting
 
-_name__="$1"
-if [ -z "${_name__}" ] || [ ${_name__} == "TODO" ];then
+__SERVICE_NAME__="$1"
+if [ -z "${__SERVICE_NAME__}" ] || [ ${__SERVICE_NAME__} == "TODO" ];then
 	echo [ERR] need a service name;
 	exit 1
 fi
+_containername="${__SERVICE_NAME__}_server.lan"
 
 _configfile="/etc/server.lan/config.ini"
 source  "${_configfile}"
 
 (
 
-	echo "[INFO] backup for     ${_name__} "
-	# .../${_name__}_server
+	echo "[INFO] backup for     ${__SERVICE_NAME__} "
+	# .../${__SERVICE_NAME__}_server
 	backup_base_path="${base_dir_backup}"
 	data_base_path="${base_dir_data}"
-	# .../data.${_name__}
+	# .../data.${__SERVICE_NAME__}
 
 	{
 		if [ -z "${backup_base_path}" ];then
@@ -56,7 +59,7 @@ source  "${_configfile}"
 	
 
 	###############
-	_repo_path=${backup_base_path}/backup.${_name__}
+	_repo_path=${backup_base_path}/backup.${__SERVICE_NAME__}
 	export BORG_PASSPHRASE=mima123456
 
 	if [ ! -e ${_repo_path} ];then
@@ -67,12 +70,12 @@ source  "${_configfile}"
 	## borg  create  --stats -p  <_repo_path>::<tag>  </path/of/need/packup>  </path/of/need/packup…>
 	{
 		date
-		docker stop ${_name__}_server
+		docker stop "${_containername}"
 
 		tag=`date +%Y%m%d_%H%M%S`
-		borg  create  --stats -p  ${_repo_path}::${tag}  ${data_base_path}/data.${_name__}
+		borg  create  --stats -p  ${_repo_path}::${tag}  ${data_base_path}/data.${__SERVICE_NAME__}
 
-		docker start ${_name__}_server
+		docker start "${_containername}"
 
 		echo "---- ---- ----"
 		echo
@@ -82,14 +85,4 @@ source  "${_configfile}"
 
 	unset BORG_PASSPHRASE
 
-	## rsync -r 
-	# TODO :: rsync
-	if [ -z "${remote_host_}" ];then
-		echo "[Warning] :: rsync exit:: `date` :: remote host did not set"
-		exit 0
-	fi
-	remote_dir="${username_}@${remote_host_}:/${base_dir_backup}/backup.${_name__}"
-	## rync -r  "${_repo_path}"   "${remote_dir}"
-	#TODO
-
-)  &> "${base_dir_log}/backup.${_name__}.$((`date "+%d"`%10)).log"
+)  &> "${base_dir_log}/backup.${__SERVICE_NAME__}.borg.$((`date "+%d"`%10)).log"
