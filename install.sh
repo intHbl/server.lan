@@ -37,16 +37,16 @@ fi
 ( 
     cd  "`dirname $0`"
 
-    # etc  /etc/server.lan/...
+# etc  /etc/server.lan/...
     echo "[INFO] cp config file"     
     source  "scripts/source_config.rc"
 
-    ##  add user
+##  add user
     echo "[INFO] add group user" 
     groupadd -g ${gid_} ${username_}
     useradd -u ${uid_} -g ${gid_} -m  "${username_}"
 
-    # bin  /usr/lib/server.lan/....
+# bin  /usr/lib/server.lan/....
     echo "[INFO] cp excute file to   /usr/lib/server.lan" 
     _software_dir="/usr/lib/server.lan"
     if [ ! -e "${_software_dir}" ];then
@@ -58,11 +58,11 @@ fi
         exit 1
     fi
 
-    if [ -e  "${_software_dir}/port80/http_server" ];then
-        rm  "${_software_dir}/port80/http_server"
-    fi
+ 
+    rm  -r "${_software_dir}/*"
+    
 
-    # cp xxxx /usr/lib/server.lan
+    ## cp xxxx /usr/lib/server.lan
     cp -r  cron.d/ "${_software_dir}"
     cp -r  port80/ "${_software_dir}"
     cp -r  services/ "${_software_dir}"
@@ -91,6 +91,7 @@ fi
 
     docker rm $(docker stop $(docker ps -a  -f name=_server.lan -q) )
 
+# entry
     echo
     echo "[OK] install is done"
     echo 
