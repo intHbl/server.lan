@@ -30,6 +30,8 @@ unset BORG_PASSPHRASE
 # 免重复输密码
 export BORG_PASSPHRASE=<…>
 
+# cmd here
+
 unset BORG_PASSPHRASE
 
 

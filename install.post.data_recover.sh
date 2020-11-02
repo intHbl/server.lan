@@ -1,37 +1,6 @@
-# borg backup
-
-## backup
-entry: backup.sh 
-->
-  (serviceName){ 
-    ->backup.borg.sh  $serviceName
-    ---> backup.remote.sh $serviceName &
-  }
+#!/bin/bash
 
 
-## list
-borg  list  <repo_path>
-borg  list  <repo_path>::<tag>
-
-
-## recover
-```shell
-check (mountpoint ${base_dir_data_mnt}) && (dir is not exists || is empty)
-then
-    stop service if running
-
-    # borg  borg_repo  -- > data  
-    repo_path=? ; tag=?
-    export BORG_PASSPHRASE=mima123456
-    cd / ; borg extract  -p <repo_path>::<tag>
-    unset BORG_PASSPHRASE
-
-    start service
-fi
-```
-
-example  
-```shell
 (
     cd  "`dirname $0`"
 
@@ -91,4 +60,3 @@ example
 
 
 )
-```
