@@ -68,15 +68,18 @@ fi
 # bin  /usr/lib/server.lan/....
     echo "[INFO] cp excute file to   /usr/lib/server.lan" 
     _software_dir="/usr/lib/server.lan"
-    if [ ! -e "${_software_dir}" ];then
-        mkdir -p "${_software_dir}"
-    elif [ -d "${_software_dir}" ];then
-        rm -r "${_software_dir}/*"
-    else
+    
+
+    if [ -d "${_software_dir}" ];then
+        rm -r "${_software_dir}"
+    elif [ -f "${_software_dir}" ];then
         echo "[ERR]::${_software_dir}:: is not a directory "
         exit 1
     fi
 
+    if [ ! -e "${_software_dir}" ];then
+        mkdir -p "${_software_dir}"
+    fi
  
     rm  -r "${_software_dir}/*"
     
