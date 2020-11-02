@@ -34,7 +34,7 @@ func initHomePage() {
 	// // http://server.lan/ariaNg
 	ariaPage.content, err = ioutil.ReadFile(rootdir + "/ariaNg_ModifiedByHbl.html")
 	if err != nil {
-		fmt.Println("[E] read homepage_inner.html error")
+		fmt.Println("[E] read ariaNg.html error")
 	}
 
 	videoPage.content, err = ioutil.ReadFile(rootdir + "/video.html")
@@ -44,7 +44,7 @@ func initHomePage() {
 
 	favicon.content, err = ioutil.ReadFile(rootdir + "/favicon.ico")
 	if err != nil {
-		fmt.Println("[E] read video.html error")
+		fmt.Println("[E] read favicon error")
 	}
 
 	homePageMux = http.NewServeMux()
