@@ -89,6 +89,7 @@ source  "${config_file}"
 
 	# check for services.
 	_do_check__
+	/etc/init.d/docker restart
 
 
 	echo "[INFO] current dir :: `pwd`"
