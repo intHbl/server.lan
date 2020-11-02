@@ -15,11 +15,29 @@ else
     exit 1
 fi
 
+
+# root
 if  [ "`whoami`" != "root" ];then
     echo "[Err] please run as root ,current user = `whoami`"
     exit 1
 fi
-#
+
+
+# apt install
+
+function _check_and_apt_install {
+    if [ -z "$1" ];then
+        return
+    fi
+    if ! which $1;then
+        apt install -y $1
+    fi
+}
+
+_check_and_apt_install borgbackup
+_check_and_apt_install rsync
+
+
 
 # 1 /etc/config.ini
 # 1.2  useradd

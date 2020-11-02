@@ -27,9 +27,12 @@ fi
     # needBackupList=(gitea	seafile	bitwarden)
 
 	## install borg_backup
-	if ! whick borg; then
+	if ! which borg || ! which rsync ; then
+		echo "[Warning] need install borgbackup|rsync, installing"
 		apt update
+
 		apt install borgbackup -y
+		apt install rsync -y
 	fi
 
 	for serviceName in ${needBackupList[*]}; do
