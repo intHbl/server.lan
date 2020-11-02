@@ -28,6 +28,8 @@
             echo "
 [mailer]
 ENABLED = true
+MAILER_TYPE    = smtp
+IS_TLS_ENABLED = true
 HOST    = ${_EMAIL_HOST}:${_EMAIL_PORT}
 FROM    = \"server.Bot\"<${_EMAIL}>
 USER    = ${_EMAIL}
@@ -36,6 +38,7 @@ PASSWD  = ${_EMAIL_SECRET}
         } >> "${_target}"
 
     }
+
 
 
     function addTOSeafile {

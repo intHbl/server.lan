@@ -18,6 +18,7 @@ docker run -d --restart=always \
     --name="${container_name}" \
     -v "${dataPath}":/data/ \
     -e ROCKET_PORT=8080 \
+    -e DOMAIN="https://bitwarden.server.lan" \
     ${EMAIL_ARGS_FOR_EMAIL} \
     -p "${bitwarden_port[0]}":8080 \
     bitwardenrs/server
