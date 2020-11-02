@@ -99,6 +99,15 @@ fi
     echo "  [INFO] entrypoint -- >  ${_software_dir}/services/start.sh " 
     echo "  [INFO] cron shell -- >  bash ${_software_dir}/cron.d/backup.sh " 
     echo "  [INFO] other cron shells -- >  bash ${_software_dir}/cron.d/<xxx>.sh "
+    echo
+    echo "[INFO] DDNS ::  #ip#     server.lan *.server.lan git.lan *.git.lan "
+    echo "        <<<ip>>>        server.lan *.server.lan git.lan *.git.lan"
+    echo "        <<<ip>>>        server.lan"
+    echo "        <<<ip>>>        git.lan    seafile.server.lan    file.server.lan"
+    echo "        <<<ip>>>        bitwarden.server.lan"
+    echo "        <<<ip>>>        down.server.lan    qbit.server.lan"
+    echo "        <<<ip>>>        statics.server.lan"
+    
     
 
     # 4.1  服务的入口. TODO
