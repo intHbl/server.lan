@@ -4,6 +4,13 @@ if [ -z "${bitwarden_port}" ];then
 	bitwarden_port=(9000)
 fi
 
+
+# EMAIL_ARGS_FOR_EMAIL="-e SMTP_HOST=<smtp.domain.tld> -e SMTP_FROM=<bitwarden@domain.tld> -e SMTP_PORT=587 -e SMTP_SSL=true -e SMTP_USERNAME=<username> -e SMTP_PASSWORD=<password> "
+EMAIL_ARGS_FOR_EMAIL=" "
+if [ -z "${_EMAIL_SECRET}" ];then
+    EMAIL_ARGS_FOR_EMAIL=" -e SMTP_HOST=${_EMAIL_HOST} -e SMTP_FROM=${_EMAIL} -e SMTP_PORT=${_EMAIL_PORT} -e SMTP_SSL=true -e SMTP_USERNAME=${_EMAIL} -e SMTP_PASSWORD=${_EMAIL_SECRET} "
+fi
+
 # run docker container
 ## default port=ROCKET_PORT=80
 docker run -d --restart=always \
@@ -11,6 +18,7 @@ docker run -d --restart=always \
     --name="${container_name}" \
     -v "${dataPath}":/data/ \
     -e ROCKET_PORT=8080 \
+    ${EMAIL_ARGS_FOR_EMAIL} \
     -p "${bitwarden_port[0]}":8080 \
     bitwardenrs/server
 

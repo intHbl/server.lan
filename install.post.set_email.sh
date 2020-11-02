@@ -7,6 +7,12 @@ source "./scripts/source_config.rc"
 
 _dataX="${base_dir_data}"
 
+PATH="/bin:/sbin:${PATH}"
+
+
+function addTOBitwarden {
+    sudo docker rm `sudo docker stop  bitwarden_server.lan` 
+}
 
 function addTOGitea {
     $1
@@ -74,11 +80,14 @@ if ${exitflag};then
 fi
 
 
+addTOBitwarden
 addTOGitea 
 addTOSeafile 
 
 
 # then restart container
+sudo bash ./scripts/run_rc.sh rc_bitwarden_service.rc
+
 sudo docker restart gitea_server.lan
 sudo docker restart seafile_server.lan
 
