@@ -54,13 +54,15 @@ fi
 
 (
     cd "${seafile_data_dir}"
-    # ln -s   /data/seahub.db       seahub.db     || true
+     ln -s   /data/seahub.db       seahub.db     || true
 
-    # ln -s   /data/ccnet           ccnet         || true
-    # ln -s   /data/conf/           conf          || true
-    # ln -s   /data/seafile-data/   seafile-data  || true
-    # ln -s   /data/seahub-data     seahub-data   || true
-    # ln -s   /data/logs            logs          || true
+     ln -s   /data/ccnet           ccnet         || true
+     ln -s   /data/conf/           conf          || true
+     ln -s   /data/seafile-data/   seafile-data  || true
+     ln -s   /data/seahub-data     seahub-data   || true
+     ln -s   /data/logs            logs          || true
+     ln -s "${seafile_path}/seafile-server-7.0.5/"  "${seafile_path}/seafile-server-latest" || true
+
     ln -s "${seafile_path}/seafile-server-7.0.5/"  "${seafile_data_dir}/seafile-server-latest" || true
 ) &> /dev/null
 
