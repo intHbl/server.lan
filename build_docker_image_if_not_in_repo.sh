@@ -1,20 +1,76 @@
 #!/bin/bash
 
 
+function print_help_menu_ {
 
-_build_flag=$1
-_is_push=$2
-if [ -z "$1"  ] || [ "--help" == "-$1" ] || [ "-h" == "$1" ];then
-    echo "Usage: ./build.sh  [arg1]  [arg2] "
-    echo "    arg1=build|test|help|h"
-    echo "    arg2=''|push"
+    echo "Usage: ./build.sh  --[arg1]  --[arg2] "
+    echo "    arg1= --test | --build | --build=<xxx>   ; xxx==docker/docker.xxxx"
+    echo "          --help | -h "
+
+    echo "    arg2(optional)= --push | '' "
     echo 
     echo "    if  (arg1 == build && arg2 != push);then "
     echo "       'auto generated docker push shell'  >>  ~/docker.push.sh  "
+    echo "                             ${HOME}/docker.push.sh ;   /root/docker.push.sh "
     echo "    fi "
     echo 
+    (
+        echo "Docker:"
+        cd "`dirname "$0"`"
+        ls docker | grep -E "docker\..*"
+        ls docker/docker.*/docker.*/.. | grep -E "docker\..*"
+    )
     exit 0
+
+}
+
+function arg_parse_ {
+    echo parse $1
+    case $1 in
+    "--build" )
+        _build_flag="build"
+        ;;
+    "--help"|"-h" )
+        print_help_menu_
+        ;;
+    "--push" )
+        _is_push="push"
+        ;;
+    "--build="*)
+        if [ "xx${1:0:8}" == "xx--build=" ];then
+            _build_flag="build"
+            _build_want_=${1:8}
+        fi
+    esac
+
+    echo $_build_flag ${1:0:8}
+}
+
+_build_flag="test"
+_is_push=""
+
+
+
+arg_parse_ "$1"
+arg_parse_ "$2"
+
+
+echo "[INFO] want  build :>>  ${_build_want_}  <<:  (if null --> build all)"
+echo "[INFO] push or not :>>  ${_is_push}  <<:  (default=not)"
+
+
+function pppp_ {
+    for((i=1;i<=$1;i++));do
+        echo -n -e "\r[INFO] press CTRL+C to break  $i/$1"
+        sleep 1
+    done
+    echo 
+}
+# wait for 10 sec if need cancel 
+if [ "x${_build_flag}" != "xtest" ];then
+    pppp_  10
 fi
+
 
 
 # arg1=build|test|help
@@ -32,8 +88,17 @@ date > ~/docker.push.sh
 
     # ${_platform}: armhf , x86_64 | test , test= just echo information,but do not real build.
     # if docker version  | grep -i arch | grep -F "arm" || [ "${_build_flag}" == "test" ];then
-    for _docker_path in docker.* docker/docker.*  ;do
+    ## docker.*
+    for _docker_path in  docker/docker.*  ;do
         if [ ! -d "${_docker_path}" ];then
+            continue
+        fi
+
+        if  [ -z "${_build_want_}" ] ;then
+            true
+        elif  [ "${_docker_path}" == "docker/docker.${_build_want_}" ];then
+            true
+        else 
             continue
         fi
 
