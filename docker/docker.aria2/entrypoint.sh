@@ -5,9 +5,15 @@ echo "[INFO]::starting:: `date` :: aria2"
 
 # conf file
 conf="/data/.aria2.d/aria2.conf"
+download_dir="/data/download"
 if [ ! -e `dirname ${conf}` ];then
     mkdir -p `dirname ${conf}`
 fi
+
+if [ ! -e "${download_dir}" ];then
+    mkdir -p "${download_dir}"
+fi
+
 if [ -e "${conf}" ];then
     cp ${conf} "/etc/aria2.conf"
     mv ${conf} "${conf}.template"
