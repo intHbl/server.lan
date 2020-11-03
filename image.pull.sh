@@ -9,7 +9,7 @@ function print_help_menu {
 }
 
 
-if [ "x$1" == "x--help" ] || [ "x$1" == "x-h" ]
+if [ "x$1" == "x--help" ] || [ "x$1" == "x-h" ];then
     print_help_menu
     exit 1
 fi
@@ -19,7 +19,9 @@ _image_want_=$1
 
 (
     cd `dirname  $0`
-    
+    source  "./scripts/source_config.rc"
+
+
     _platform="`bash ./scripts/platform.sh`"
 
     echo "[INFO] platform, arch == ${_platform} "
@@ -33,7 +35,7 @@ _image_want_=$1
     if  [ ! -z "${_image_want_}" ] ;then
         image_="${_image_want_}-${_platform}"
         docker pull "${dockerhub_username_}/${image_}"
-        
+
         sleep 1
         exit 0
     fi
