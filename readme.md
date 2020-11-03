@@ -31,26 +31,33 @@
 ```
 
 ## note : 
-those `docker image` are built for arm platform.
-not for x86
+those `docker image` are built for those platform:  
+    arm (armhf, arm64)
+    x86_64
 
-> TODO :: build for both `arm` and `x86_64`    
-> machine_arch = `uname -m`
 
-> docker_container_name = `${name}_server`  
-> volume  in host  = `data.${name} `
+> machine_arch = `uname -m` ; `docker version | grep -i arch`
+
+> docker_container_name = `${name}_server.lan`  
+> docker_volume    = `${disk_data_mountpoint}/data.${name}:/data `
 
 .   
 .   
 .   
 
 ## config ,build, install 
-> config 
-> build , (pre) , install , (post)
-```shell
-1. config.ini
-2. build.sh  --> 
-3. install.pre.sh  - > install.sh  -> [ optional : install.post.*.sh ]
+
+> config :: `cp config.ini.template config.ini`  -> edit config.ini 
+> install   
+> > install.pre.sh :: run install.pre.sh -> edit /etc/fstab ; e2label /dev/sdX  disk_<label>X   
+> > -                     image.pull ; _(optional : image.build)_    
+> > install.sh ::  run install.sh   ->  
+> > -                (data backup; log)  : edit /etc/crontab ;   
+> > -                (entry: start.sh )  : edit /etc/rc.local    
+> > install.post :: after services started ->  run install.post.*.sh -> reboot  
+> > 
+
+
 ```
 > uninstall `uninstall.sh`  
 > reinstall `uninstall.sh` -> ` (pre) -> install.sh [ -> post]`
