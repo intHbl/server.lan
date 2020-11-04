@@ -72,8 +72,19 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 		echo "[INFO] stop docker container :: ${_containername} "
 		docker stop "${_containername}"
 		(
+			
+			case "${__service_name__}" in
+			"gitea" )
+				arg_exclude_=" -e ${data_path_base}/data.${__service_name__}/ssh "
+				chown  "${uid_}:${gid_}"  "${data_path_base}/data.${__service_name__}/git/.ssh"
+				chown -R "${uid_}:${gid_}"  "${data_path_base}/data.${__service_name__}/git/.ssh"
+				;;
+			*)
+				arg_exclude_=""
+			esac
+
 			tag=`date +%Y%m%d_%H%M%S`
-			if  borg  create  --stats -p  ${_repo_path}::${tag}  ${data_path_base}/data.${__service_name__};then
+			if  borg  create  --stats ${arg_exclude_} -p  ${_repo_path}::${tag}  ${data_path_base}/data.${__service_name__};then
 				echo "[OK]::`date`   :${__service_name__}::"
 			else 
 				echo "[Err]::`date`   ::${__service_name__}:: borg backup err."

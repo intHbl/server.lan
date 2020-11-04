@@ -86,7 +86,7 @@ exit 0
 
     ## pub key >> authorized_keys
     echo "[INFO] sshkey.pub -->> authorized_keys"
-    echo "    sudo vi /home/${username_}/.ssh/authorized_keys"
+    echo "    sudo vi /root/.ssh/authorized_keys"
     id_rsa_key="/home/${username_}/.ssh/${remote_host_}.id_rsa"
     id_rsa_key_pub_="${id_rsa_key}.pub"
 
