@@ -8,25 +8,28 @@ exit 0
 # needBackupList=(gitea	seafile	bitwarden)
 # setting
 
-__SERVICE_NAME__="$1"
-if [ -z "${__SERVICE_NAME__}" ] || [ ${__SERVICE_NAME__} == "TODO" ];then
+__service_name__="$1"
+if [ -z "${__service_name__}" ] || [ ${__service_name__} == "TODO" ];then
 	echo [ERR] need a service name;
 	exit 1
 fi
-_containername="${__SERVICE_NAME__}_server.lan"
+_containername="${__service_name__}_server.lan"
 
 _configfile="/etc/server.lan/config.ini"
 source  "${_configfile}"
 
 logs__="${base_dir_data}/data.static_file/logs__"
+log_n_=$((`date "+%d"`%10))
+log_tmp_="${base_dir_log}/backup.${__service_name__}.borg.${log_n_}.log" 
+log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 
 (
 	echo "[INFO]::remote backup :: `date` "
 	echo 
-	echo "[INFO] backup for     ${__SERVICE_NAME__} "
+	echo "[INFO] backup for     ${__service_name__} "
 
     # from
-	borg_repo_path="${base_dir_data_mnt}/backup.${__SERVICE_NAME__}"
+	borg_repo_path="${base_dir_data_mnt}/backup.${__service_name__}"
     # to
 	remote_="${username_}@${remote_host_}"
 	remote_path="${remote}:${borg_repo_path}"
@@ -34,7 +37,7 @@ logs__="${base_dir_data}/data.static_file/logs__"
 	function remote_backup_func_ {
 		rsync -r  -i "${remote_ssh_key_}" "${borg_repo_path}"   "${remote_path}"
 	}
-	# .../data.${__SERVICE_NAME__}
+	# .../data.${__service_name__}
 
     # check
 	## directories
@@ -74,4 +77,4 @@ logs__="${base_dir_data}/data.static_file/logs__"
 	echo "[Info] DONE"
 	echo " _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ "
 
-)  2>&1 | tee "${base_dir_log}/backup.${__SERVICE_NAME__}.remote.$((`date "+%d"`%10)).log" | tee  "${logs__}/backup.${__SERVICE_NAME__}.remote.log"
+)  2>&1 | tee "${log_tmp_}" | tee  "${log_static_}"
