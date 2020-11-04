@@ -74,8 +74,7 @@ source  "${config_file}"
 
 		echo "[OK]::`date`  ::$0::check done"
 
-	}
-
+	}  # // _do_check__
 	
 	echo  "[INFO] ::`date`  :: mountpoint "
 	echo "---"
@@ -89,8 +88,11 @@ source  "${config_file}"
 
 	# check for services.
 	_do_check__
-	/etc/init.d/docker restart
 
+	echo "[INFO] restart docker daemon"
+	sleep 2
+	/etc/init.d/docker restart
+	sleep 1
 
 	echo "[INFO] current dir :: `pwd`"
 	
