@@ -69,14 +69,18 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 	# do backup and write logs
 	## borg  create  --stats -p  <_repo_path>::<tag>  </path/of/need/packup>  </path/of/need/packup…>
 	{
+		echo "[INFO] stop docker container :: ${_containername} "
 		docker stop "${_containername}"
 		(
 			tag=`date +%Y%m%d_%H%M%S`
-			if ! borg  create  --stats -p  ${_repo_path}::${tag}  ${data_path_base}/data.${__service_name__};then
-				echo "[Err]::`date`   :: borg backup err."
+			if  borg  create  --stats -p  ${_repo_path}::${tag}  ${data_path_base}/data.${__service_name__};then
+				echo "[OK]::`date`   :${__service_name__}::"
+			else 
+				echo "[Err]::`date`   ::${__service_name__}:: borg backup err."
 				# send message to --> TODO
 			fi
 		)
+		echo "[INFO] start docker container :: ${_containername} "
 		docker start "${_containername}"
 
 		echo "---- ---- ----"
