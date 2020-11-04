@@ -48,15 +48,14 @@ _config_file="/etc/server.lan/config.ini"
 read -p "  delete config file  ${_config_file} ?(y/N)"  _tmp
 if [ "y_" == "${_tmp}_" ] || [ "Y_" == "${_tmp}_" ];then
     rm "${_config_file}"
+# etc  /etc/server.lan/...
+    echo "[INFO] cp 'config.ini' file  ->  ${_config_file} "   
 else
     true
 fi
 
 ( 
     cd  "`dirname $0`"
-
-# etc  /etc/server.lan/...
-    echo "[INFO] cp config file"     
     source  "scripts/source_config.rc"
 
 ##  add user
