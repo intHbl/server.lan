@@ -39,6 +39,13 @@ fi
 
 ) > "${logs__}/info_cpuTemp_disk.log" 2> /dev/null 
 
+
+(
+
+    "${logs__}/info_xxxx.log"
+
+)  2> /dev/null 
+
 exit 0
 
 (

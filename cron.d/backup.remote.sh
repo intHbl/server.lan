@@ -18,6 +18,8 @@ _containername="${__SERVICE_NAME__}_server.lan"
 _configfile="/etc/server.lan/config.ini"
 source  "${_configfile}"
 
+logs__="${base_dir_data}/data.static_file/logs__"
+
 (
 
 	echo "[INFO] backup for     ${__SERVICE_NAME__} "
@@ -75,4 +77,4 @@ source  "${_configfile}"
 	## rync -r  "${_repo_path}"   "${remote_dir}"
 	#TODO
 
-)  &> "${base_dir_log}/backup.${__SERVICE_NAME__}.remote.$((`date "+%d"`%10)).log"
+)  2>&1 | tee "${base_dir_log}/backup.${__SERVICE_NAME__}.remote.$((`date "+%d"`%10)).log" | tee  "${logs__}/backup.${__SERVICE_NAME__}.remote.log"
