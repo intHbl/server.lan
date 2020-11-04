@@ -37,8 +37,13 @@ fi
 
 	for serviceName in ${needBackupList[*]}; do
             # 1#.backup to backup disk :: borg
+			echo 
+			echo 
+			echo "#############"
+			echo "############## Borg Backup ##################"
 			echo "[INFO] backup for ${serviceName} "
 			bash "${borg_backup_func}" "${serviceName}"
+			echo "############## rsync backup ###################  #"
             # 2#.backup to remote :: rsync ....  &
             bash "${remote_backup_func}" "${serviceName}" & 
 	done

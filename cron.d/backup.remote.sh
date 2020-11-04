@@ -34,7 +34,8 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 	remote_="${username_}@${remote_host_}"
 	remote_path="${remote}:${borg_repo_path}"
 	remote_ssh_key_="/home/${username_}/.ssh/${remote_host_}.id_rsa"
-
+	# id_rsa_key="/home/${username_}/.ssh/${remote_host_}.id_rsa"
+	
 	function remote_backup_func_ {
 		rsync -r  -i "${remote_ssh_key_}" "${borg_repo_path}"   "${remote_path}"
 	}

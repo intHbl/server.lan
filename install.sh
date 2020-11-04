@@ -101,11 +101,17 @@ fi
     }
     
     if  [ "x${_ENABLE_HTTPS}" == "xtrue" ] ;then
+        echo
+        echo 
+        echo " ############## "
         bash ./scripts/ssl_https.sh
         _soft_link      "${HOME}/server.latest.key"   "${_software_dir}/port80/server.key"
         _soft_link      "${HOME}/server.latest.crt"   "${_software_dir}/port80/server.crt"
         echo "[INFO] HTTPS enabled"
         cp  "/root/ca.crt"   "${_software_dir}/port80/static/root_ca.crt"
+        echo 
+        echo " ###############  ## "
+        echo 
     fi
 
     echo "[INFO] stop and rm containers   < -f name=_server.lan > "
@@ -118,7 +124,7 @@ fi
     echo 
     echo "[INFO] entries :: ${_software_dir}/{services,cron.d}/....  "
     echo "  [INFO] entrypoint -- >  ${_software_dir}/services/start.sh " 
-    echo "  [INFO] cron shell -- > 0  4 * * * root  bash ${_software_dir}/cron.d/backup.sh " 
+    echo "  [INFO] cron shell -- > 0  4 * * * ${username_}  bash ${_software_dir}/cron.d/backup.sh " 
     echo "  [INFO] cron shell -- > 55 3 * * * root  bash ${_software_dir}/cron.d/log.sh " 
     echo "  [INFO] other cron shells -- >  bash ${_software_dir}/cron.d/<xxx>.sh "
     echo

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-# init == login at lease once { seafile, gitea,}. 
+# inited == have run  `sudo bash /usr/lib/server.lan/service/start.sh `
+
 
 (
 

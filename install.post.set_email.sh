@@ -66,7 +66,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
     exitflag=false
     function isEmpty_and_exit {
         if [ -z "$1" ];then
-            echo "[Err] arg is not set"
+            echo "[X] "
             exitflag=true
         fi
         echo "[OK] "
