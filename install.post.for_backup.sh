@@ -22,12 +22,17 @@ _check_and_apt_install rsync
     
     echo '
 
-    # /etc/crontab  <--- backup 
-    ## borgbackup # run by ${uid_} ${username_}
-    # "TODO" add_to_cron   /usr/lib/server.lan/cron.d/borg.backup.sh
+    # backup rsync  --> remote
+    ## ./cron.d/backup.sh  -> backup.{borg,remote}.sh
+    ### ....
 
-    ## rsync  --> remote
-    #"TODO" add_to_cron    /usr/lib/server.lan/cron.d/rsync.backup.sh
+    ## /etc/crontab  <--- backup.sh   (run by root)
+    ### 0 * * * *  root  /usr/lib/server.lan/cron.d/borg.backup.sh
+
+    # remote  , run @ backup.lan
+    ## add user :: useradd -m  ${uid_}  -g ${gid_}  ${username_}
+    ## scp ${username_}@server.lan:~/.ssh/backup.lan.id_rsa.pub  ~/.ssh/backup.lan.id_rsa.pub
+    ## 
     '
 
 )
