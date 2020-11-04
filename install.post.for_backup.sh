@@ -40,21 +40,66 @@ _check_and_apt_install rsync
     
 
     read -p "[Input] input the backup.lan's ip "  backup_ip
-    echo "#${backup_ip}  backup.lan"  | tee -a /etc/hosts
+    {
+        echo 
+        echo "#${backup_ip}  backup.lan "  
+    } | tee -a /etc/hosts
 
-    echo "  IP=${backup_ip} , press <ENTER> to continue, CTR-C to exit "
-    read 
+    echo "[INFO]  IP=${backup_ip} "
+    echo 
+    echo "[WARN]  sudo vi /etc/hosts"
+    echo 
+    exit 0
+)
 
+exit 0
+
+##########################################################################
+(
     # #@ backup.lan  side 
-    # , remote  (run @ backup.lan)
-    ## add user :: useradd -m  ${uid_}  -g ${gid_}  ${username_}
-    ## scp ${username_}@server.lan:~/.ssh/backup.lan.id_rsa.pub  ~/.ssh/backup.lan.id_rsa.pub
-    ## 
 
-    scp   ${username_}@server.lan:/home/${username_}/.ssh/  "/home/${username_}/.ssh/${remote_host_}.id_rsa.pub"
-    if [ -e "" ];then
-        cat "/home/${username_}/.ssh/${remote_host_}.id_rsa.pub" | tee -a  /home/${username_}/.ssh/authorized_keys
-    else
-        echo "[Err] ::file not exists:: /home/${username_}/.ssh/${remote_host_}.id_rsa.pub""
+    cd  "`dirname $0`"
+    source  "scripts/source_config.rc"
+
+    ## add user
+    echo "[...] backup.lan side.  ENTER to continue, CTR-C to exit"
+    read 
+    echo "[INFO] add group user" 
+    groupadd -g ${gid_} ${username_}
+    useradd -u ${uid_} -g ${gid_} -m  "${username_}"
+    usermod  -G docker ${username_}
+    ## /etc/fstab
+    echo "[INFO] mount"
+    echo "[WARN] #   sudo vi /etc/fstab" 
+    {
+        echo ""
+        echo "#LABEL=disk_backupX   /mnt/server.lan/backupX    ext4  defaults,nofail  0  2" 
+    } | tee -a /etc/fstab
+    
+    mnt_="/mnt/server.lan/backupX"
+    if [ ! -e "${mnt_}" ];then
+        mkdir -p "${mnt_}"
     fi
+    mount /dev/disk/by_label/disk_backupX  "${mnt_}"
+    chown "${uid_}:${gid_}" "${mnt_}"
+
+
+    ## pub key >> authorized_keys
+    echo "[INFO] sshkey.pub -->> authorized_keys"
+    echo "    sudo vi /home/${username_}/.ssh/authorized_keys"
+    id_rsa_key="/home/${username_}/.ssh/${remote_host_}.id_rsa"
+    id_rsa_key_pub_="${id_rsa_key}.pub"
+
+    scp   ${username_}@server.lan:${id_rsa_key_pub_}  "${id_rsa_key_pub_}"
+    if [ -e "${id_rsa_key_pub_}" ];then
+        tmp_="`dirname ${id_rsa_key_pub_}`"
+        if [ ! -e "${tmp_}" ];then
+            mkdir -p  "${tmp_}"
+            chown "${uid_}:${gid_}" "${tmp_}"
+        fi
+        cat "${id_rsa_key_pub_}" | tee -a  /home/${username_}/.ssh/authorized_keys
+    else
+        echo "[Err] ::file not exists:: /home/${username_}/.ssh/${remote_host_}.id_rsa.pub"
+    fi
+
 )
