@@ -13,6 +13,7 @@ fi
 logs__="${base_dir_data}/data.static_file/logs__"
 if [ ! -e "${logs__}/" ];then
     mkdir "${logs__}"
+    chown ${uid_}:${gid_} "${logs__}" 
 fi
 
 (

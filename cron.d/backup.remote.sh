@@ -33,6 +33,9 @@ logs__="${base_dir_data}/data.static_file/logs__"
 
     # check directories! TODO
 	{
+		echo "[INFO]::remote backup :: `date` "
+		echo "[INFO] backup for     ${__SERVICE_NAME__} "
+
 		if [ -z "${backup_base_path}" ];then
 			echo "[Err] :: please set arg :: 'backup_base_path' "
 			exit 1
@@ -75,6 +78,8 @@ logs__="${base_dir_data}/data.static_file/logs__"
 	fi
 	remote_dir="${username_}@${remote_host_}:/${base_dir_backup}/backup.${__SERVICE_NAME__}"
 	## rync -r  "${_repo_path}"   "${remote_dir}"
+
 	#TODO
+	echo TODO
 
 )  2>&1 | tee "${base_dir_log}/backup.${__SERVICE_NAME__}.remote.$((`date "+%d"`%10)).log" | tee  "${logs__}/backup.${__SERVICE_NAME__}.remote.log"

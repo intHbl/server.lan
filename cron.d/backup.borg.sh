@@ -19,7 +19,7 @@ logs__="${base_dir_data}/data.static_file/logs__"
 
 
 (
-
+	echo "[INFO]::borg backup :: `date` "
 	echo "[INFO] backup for     ${__SERVICE_NAME__} "
 	# .../${__SERVICE_NAME__}_server
 	backup_base_path="${base_dir_backup}"
