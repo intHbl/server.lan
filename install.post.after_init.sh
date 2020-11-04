@@ -24,6 +24,9 @@
 
 
     # set Email sending
-    bash ./install.post.set_email.sh
+    # bash ./install.post.set_email.sh
+    echo "[INFO] set Email sending "
+    echo "       sudo bash ./install.post.set_email.sh"
+    
 
 )
