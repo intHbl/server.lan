@@ -84,6 +84,7 @@ source  "${config_file}"
 	echo "___"
 
 	# run 80 port for `home page` and `reverse proxy`.
+	echo "[INFO] running http server @ :80 :443"
 	bash ./start_proxy_port80.sh
 
 	# check for services.
