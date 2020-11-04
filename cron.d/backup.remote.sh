@@ -33,11 +33,16 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
     # to
 	remote_="${username_}@${remote_host_}"
 	remote_path="${remote}:${borg_repo_path}"
-	remote_ssh_key_="/home/${username_}/.ssh/${remote_host_}.id_rsa"
+
+	ssh_pubkey_="/home/${username_}/.ssh/id_rsa.pub"
 	# id_rsa_key="/home/${username_}/.ssh/${remote_host_}.id_rsa"
 	
+
+
 	function remote_backup_func_ {
-		rsync -r  -i "${remote_ssh_key_}" "${borg_repo_path}"   "${remote_path}"
+		
+		# rsync -r  -i "${ssh_pubkey_}" "${borg_repo_path}"   "${remote_path}"
+		rsync -av "${borg_repo_path}"   "${remote_path}"
 	}
 	# .../data.${__service_name__}
 
@@ -63,8 +68,8 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 			exit 0
 		fi
 		
-		if [ ! -e "${remote_ssh_key_}" ];then
-			echo "[Err] ssh private key not exists :: ${remote_ssh_key_}"
+		if [ ! -e "${ssh_pubkey_}" ];then
+			echo "[Err] ssh private key not exists :: ${ssh_pubkey_}"
 			exit 1
 		fi
 	}
