@@ -86,6 +86,10 @@ function backup_lan_gen_ {
         echo "[...] backup.lan side.  ENTER to continue, CTR-C to exit"
         read 
 
+        echo " ################################ "
+        echo " ################################ "
+        echo " ################################ "
+        mnt_="/mnt/server.lan/backupX"
         cat << EOF
 
 echo "[INFO]::"
@@ -99,6 +103,8 @@ echo "[INFO] add group user"
 groupadd -g ${gid_} ${username_}
 useradd -u ${uid_} -g ${gid_} -m  "${username_}"
 usermod  -G docker ${username_}
+echo
+echo
 ## /etc/fstab
 echo "[INFO] mount"
 
@@ -106,13 +112,14 @@ mnt_="/mnt/server.lan/backupX"
 if [ ! -e "${mnt_}" ];then
     mkdir -p "${mnt_}"
 fi
-mount /dev/disk/by_label/disk_backupX  "${mnt_}"
+mount /dev/disk/by-label/disk_backupX  "${mnt_}"
 chown "${uid_}:${gid_}" "${mnt_}"
 
+echo 
 echo "[WARN] #   sudo vi /etc/fstab" 
 {
     echo ""
-    echo "#LABEL=disk_backupX   /mnt/server.lan/backupX    ext4  defaults,nofail  0  2" 
+    echo "LABEL=disk_backupX   /mnt/server.lan/backupX    ext4  defaults,nofail  0  2" 
 } | tee -a /etc/fstab
 
 
@@ -120,6 +127,8 @@ echo "[WARN] #   sudo vi /etc/fstab"
 ### server.lan :: ssh-copy-id  -i  ${username_}@backup.lan
 
 EOF
+    echo " ################################ "
+    echo " ################################ "
 
     )
 }
