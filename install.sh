@@ -96,7 +96,7 @@ fi
 
 # ssl  , https
     function _soft_link {
-        rm "$2" || true
+        rm "$2" &>/dev/null || true
         ln -s  "$1"  "$2"
     }
     
