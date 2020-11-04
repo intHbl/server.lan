@@ -1,9 +1,5 @@
 #!/bin/bash
 
-
-# TODO
-exit 0
-
 # backup
 # needBackupList=(gitea	seafile	bitwarden)
 # setting
@@ -40,7 +36,7 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 
 
 	function remote_backup_func_ {
-		
+
 		# rsync -r  -i "${ssh_pubkey_}" "${borg_repo_path}"   "${remote_path}"
 		rsync -av "${borg_repo_path}"   "${remote_path}"
 	}
