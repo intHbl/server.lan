@@ -33,7 +33,13 @@ function _build_hook {
     fi
 }
 
-source ./scripts/source_config.rc
+{
+    tmp_="`pwd`"
+    cd "$(dirname "`dirname $0`")"
+    source "./scripts/source_config.rc"
+    cd "${tmp_}"
+}
+
 _tag_name=$(basename "${_dir_dockerfile}")
 _tag_name="${_tag_name:7}"
 _log_file="/tmp/dockerbuild.${_tag_name}-${_platform}"

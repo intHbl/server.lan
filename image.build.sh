@@ -25,6 +25,10 @@ function print_help_menu_ {
 }
 
 function arg_parse_ {
+    if [ "x${1}" == "x" ];then
+        return
+    fi
+
     echo parse $1
     case $1 in
     "--build" )
@@ -43,7 +47,6 @@ function arg_parse_ {
         fi
     esac
 
-    echo $_build_flag ${1:0:8}
 }
 
 _build_flag="test"
@@ -57,7 +60,7 @@ arg_parse_ "$2"
 
 echo "[INFO] want  build :>>  ${_build_want_}  <<:  (if null --> build all)"
 echo "[INFO] push or not :>>  ${_is_push}  <<:  (default=not)"
-
+echo
 
 function pppp_ {
     for((i=1;i<=$1;i++));do
@@ -70,7 +73,7 @@ function pppp_ {
 if [ "x${_build_flag}" != "xtest" ];then
     pppp_  10
 fi
-
+echo 
 
 
 # arg1=build|test|help

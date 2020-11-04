@@ -16,8 +16,8 @@ fi
     cd "$(dirname "$0")"
 
     function build_image_y {
-        
-        _image_name="$1"      
+
+        _image_name="$1"
         _dir_dockerfile="$(pwd)/docker.${_image_name}"
         # docker/docker.xxxx/docker.yyyy
 
@@ -33,6 +33,7 @@ fi
     }
 
     
-    build_image_y   "gitea_bin"  
+    build_image_y   "seafile-v7.0.5-baselayer" 
 
 )
+

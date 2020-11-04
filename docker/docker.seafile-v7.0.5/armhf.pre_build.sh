@@ -1,23 +1,15 @@
 #!/bin/bash
 
 
-# build image :: baselayer  , if not exits.
+# build image :: baselayer  , if not exits.        
+
+_build_flag="$1"
+_is_push="$2"
+_platform="$3"
+
 (
     cd "$(dirname "$0")"
 
-    _image_name="seafile-v7.0.5-baselayer"
+    bash ./pre_build.sh  "${_build_flag}"  "${_is_push}"  "${_platform}"
 
-    _dir_dockerfile="$(dirname "$0")/docker.${_image_name}"
-    _build_flag="$1"
-    _is_push="$2"
-
-
-    if ! docker image ls "inthbl/${_image_name}:latest" | grep -F "inthbl/${_image_name}" ;then
-        # ./server.lan/docker/<-->
-        if ! bash ../../scripts/build_dockerimage.sh  "${_dir_dockerfile}" "${_build_flag}"  "${_is_push}" "armhf" ;then
-            exit 1
-        fi
-    fi
-
-    exit 0
 )

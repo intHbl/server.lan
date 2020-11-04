@@ -1,16 +1,15 @@
 #!/bin/bash
 
-# (
-#     cd "`dirname $0`"
-# )
 
+# build image :: baselayer  , if not exits.        
+
+_build_flag="$1"
+_is_push="$2"
+_platform="$3"
 
 (
-    cd "`dirname $0`"
-    cp Dockerfile x86_64.Dockerfile.__gen__
-    if [ -f ./pre_build.sh ];then
-        bash ./pre_build.sh
-    fi
+    cd "$(dirname "$0")"
+
+    bash ./pre_build.sh  "${_build_flag}"  "${_is_push}"  "${_platform}"
+
 )
-
-
