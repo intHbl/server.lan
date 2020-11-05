@@ -16,8 +16,8 @@ for _dockerfile in docker.* docker/docker.*  ;do
 done
 
 
-# rm /usr/lib/server.lan
-rm -r /usr/lib/server.lan/*
+# rm /usr/local/server.lan
+rm -r /usr/local/server.lan/*
 
 
 # !!! don't delete 

@@ -2,7 +2,7 @@
 
 # ariaNg html file
 if [ ! -e "${dataPath}/ariaNg_ModifiedByHbl.html" ];then
-	cp /usr/lib/server.lan/port80/ariaNg_ModifiedByHbl.html "${dataPath}/"
+	cp /usr/local/server.lan/port80/ariaNg_ModifiedByHbl.html "${dataPath}/"
 fi
 
 # chmod for ssfs's  read write

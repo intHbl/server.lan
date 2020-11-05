@@ -11,7 +11,7 @@
 
 
 # /etc/server.lan/
-# /usr/lib/server.lan/
+# /usr/local/server.lan/
 # /var/server.lan/{data,backup,download}
 
 if [ `id -u` -ge "1000" ];then

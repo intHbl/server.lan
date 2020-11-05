@@ -18,7 +18,7 @@ source  "${config_file}"
 # )
 
 (
-    _software_dir="/usr/lib/server.lan/port80"
+    _software_dir="/usr/local/server.lan/port80"
     if [ ! -d "${_software_dir}" ];then
         echo "[ERR]::${_software_dir}:: is not exists "
         exit 1

@@ -37,7 +37,7 @@ function server_lan_ {
             ### ....
 
             ## /etc/crontab  <--- backup.sh   (run by root)
-            ### 0 * * * *  root  /usr/lib/server.lan/cron.d/borg.backup.sh
+            ### 0 * * * *  root  /usr/local/server.lan/cron.d/borg.backup.sh
         # }
 
         # #@ sever.lan side

@@ -41,7 +41,7 @@ _check_and_apt_install rsync
 
 # 1 /etc/config.ini
 # 1.2  useradd
-# 2 /usr/lib/server.lan
+# 2 /usr/local/server.lan
 # 3 service start entry
 
 _config_file="/etc/server.lan/config.ini"
@@ -64,9 +64,9 @@ fi
     useradd -u ${uid_} -g ${gid_} -m  "${username_}"
     usermod  -G docker ${username_}
 
-# bin  /usr/lib/server.lan/....
-    echo "[INFO] cp excute file to   /usr/lib/server.lan" 
-    _software_dir="/usr/lib/server.lan"
+# bin  /usr/local/server.lan/....
+    echo "[INFO] cp excute file to   /usr/local/server.lan" 
+    _software_dir="/usr/local/server.lan"
     
 
     if [ -d "${_software_dir}" ];then
@@ -83,7 +83,7 @@ fi
     rm  -r "${_software_dir}/*"
     
 
-    ## cp xxxx /usr/lib/server.lan
+    ## cp xxxx /usr/local/server.lan
     cp -r  cron.d/ "${_software_dir}"
     cp -r  port80/ "${_software_dir}"
     cp -r  services/ "${_software_dir}"
@@ -91,8 +91,8 @@ fi
 
 
     chmod u+x services/*.sh
-    chown ${uid_}:${gid_} /usr/lib/server.lan
-    chown -R ${uid_}:${gid_} /usr/lib/server.lan/
+    chown ${uid_}:${gid_} /usr/local/server.lan
+    chown -R ${uid_}:${gid_} /usr/local/server.lan/
 
 # ssl  , https
     function _soft_link {

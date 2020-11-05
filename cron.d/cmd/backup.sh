@@ -25,7 +25,7 @@ log_static_="${logs__}/backup.ENTRY.${log_n_}.log"
 	if [ ! -f "${STARTLOGFILE}" ];then
 		echo "[ERR] service not started"
 		echo "##########################"
-		echo "  please run  ' sudo bash /usr/lib/server.lan/services/start.sh ' "
+		echo "  please run  ' sudo bash /usr/local/server.lan/services/start.sh ' "
 		echo "##############################"
 		exit 1
 	fi

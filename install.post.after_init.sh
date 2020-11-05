@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-# inited == have run  `sudo bash /usr/lib/server.lan/service/start.sh `
+# inited == have run  `sudo bash /usr/local/server.lan/service/start.sh `
 
 
 (
