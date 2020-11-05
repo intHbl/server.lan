@@ -25,10 +25,10 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 	echo "[INFO] backup for     ${__service_name__} "
 
     # from
-	borg_repo_path="${base_dir_data_mnt}/backup.${__service_name__}"
+	borg_repo_path="${base_dir_backup_mnt}/backup.${__service_name__}"
     # to
 	remote_="${username_}@${remote_host_}"
-	remote_path="${remote}:${borg_repo_path}"
+	remote_path="${remote_}:${borg_repo_path}"
 
 	ssh_pubkey_="/home/${username_}/.ssh/id_rsa.pub"
 	# id_rsa_key="/home/${username_}/.ssh/${remote_host_}.id_rsa"
@@ -38,19 +38,19 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 	function remote_backup_func_ {
 
 		# rsync -r  -i "${ssh_pubkey_}" "${borg_repo_path}"   "${remote_path}"
-		rsync -av "${borg_repo_path}"   "${remote_path}"
+		rsync -av -e ssh "${borg_repo_path}"   "${remote_path}"
 	}
 	# .../data.${__service_name__}
 
     # check
 	## directories
 	{
-		if [ -z "${base_dir_data_mnt}" ];then
+		if [ -z "${base_dir_backup_mnt}" ];then
 			echo "[Err] :: please set arg :: 'backup_base_path' -> 'base_dir_backup_mnt' "
 			exit 1
 		fi
 
-		if  ! mountpoint ${base_dir_data_mnt} ;then
+		if  ! mountpoint ${base_dir_backup_mnt} ;then
 			echo "[Err] disk::backup is not mounted"
 			exit 1
 		fi
