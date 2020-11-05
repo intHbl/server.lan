@@ -71,7 +71,7 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 	{
 		echo
 		echo "############## Borg list ###################"
-		borg  list  ${_repo_path}
+		borg  list  "${_repo_path}"
 		echo 
 		echo "#######################################  ##"
 		echo 
@@ -108,7 +108,7 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 		)
 		echo -e "\n\n\n\n"
 		echo "[INFO] start docker container :: `docker start ${_containername}` ::  ${_containername} == running "
-		"
+		
 
 		echo "---- ---- ----"
 		echo
