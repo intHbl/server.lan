@@ -69,8 +69,13 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 	# do backup and write logs
 	## borg  create  --stats -p  <_repo_path>::<tag>  </path/of/need/packup>  </path/of/need/packup…>
 	{
-		echo "[INFO] stop docker container :: ${_containername} "
-		docker stop "${_containername}"
+		echo
+		echo "############## Borg list ###################"
+		borg  list  ${_repo_path}
+		echo 
+		echo "#######################################  ##"
+		echo 
+		echo "[INFO] stop docker container :: `docker stop ${_containername}` :: ${_containername} == stopped "
 		(
 			arg_exclude_=""
 			case "${__service_name__}" in
@@ -102,8 +107,8 @@ log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 			fi
 		)
 		echo -e "\n\n\n\n"
-		echo "[INFO] start docker container :: ${_containername} "
-		docker start "${_containername}"
+		echo "[INFO] start docker container :: `docker start ${_containername}` ::  ${_containername} == running "
+		"
 
 		echo "---- ---- ----"
 		echo
