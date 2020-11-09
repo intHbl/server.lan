@@ -12,7 +12,7 @@ if [ -e "${_configfile}" ];then
 fi
 
 logs__="${base_dir_data}/data.static_file/logs__"
-log_n_=$((`date "+%d"`%10))
+log_n_=$((`date "+%-d"`%10))
 log_tmp_="${base_dir_log}/backup.ENTRY.${log_n_}.log" 
 log_static_="${logs__}/backup.ENTRY.${log_n_}.log"
 

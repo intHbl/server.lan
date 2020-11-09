@@ -16,7 +16,7 @@ _configfile="/etc/server.lan/config.ini"
 source  "${_configfile}"
 
 logs__="${base_dir_data}/data.static_file/logs__"
-log_n_=$((`date "+%d"`%10))
+log_n_=$((`date "+%-d"`%10))
 log_tmp_="${base_dir_log}/backup.${__service_name__}.borg.${log_n_}.log" 
 log_static_="${logs__}/backup.${__service_name__}.borg.${log_n_}.log"
 
