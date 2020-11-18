@@ -53,6 +53,11 @@ RUN groupadd -g ${gid_} ${username_} \
     &&   mv /opt/seafile/seafile-server-7.0.5 /seafile \
     &&   chown -R ${uid_}:${gid_} /seafile
 
+# avatar fix     
+#     RUN ln -s  /seafile/seafile-server-7.0.5 /seafile/seafile-server-latest  \
+#   && if [ -e "/seafile/seafile-server-latest/seahub/media/avatars" ];then rm -r "/seafile/seafile-server-latest/seahub/media/avatars" ;fi \
+#   && ln -s   /seafile/seahub-data/avatars/ "/seafile/seafile-server-latest/seahub/media/avatars" \
+
 
 COPY --from=initDataStage /initdata /initdata
 
